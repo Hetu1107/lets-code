@@ -45,7 +45,9 @@ function Nav() {
         </div>
         <div className="nev-right-right">
           <div className="nev-right-button">
-            <button><i class="fas fa-plus"></i> create room</button>
+            <button onClick={()=>{
+              document.getElementById('modal').classList.add('modal-active');
+            }}><i class="fas fa-plus"></i> create room</button>
           </div>
           <div className="nev-right-profile">
             <div className="nav-profile" onClick={()=>{

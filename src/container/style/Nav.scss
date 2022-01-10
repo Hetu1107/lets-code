@@ -246,13 +246,34 @@
     min-height: 100vh;
     height: 100%;
     background-color: #191c24;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     transition: all 500ms ease;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    a{
+        width:  100%;
+        background-color: transparent;
+        height: 40px;
+        max-height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 70px;
+        flex-direction: row-reverse;
+        padding: 10px 0;
+        transition: all 300ms ease;
+        position: relative;
+        cursor: pointer;
+        text-decoration: none;
+        &:hover{
+            background-color: $li;
+        }
+    }
     .side-profile{
         width: 100%;
         background-color: transparent;
@@ -260,7 +281,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        top: 70px;
         flex-direction: row-reverse;
         padding: 10px 0;
         transition: all 300ms ease;
@@ -320,13 +340,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        top: 70px;
         flex-direction: row-reverse;
         padding: 10px 0;
         transition: all 300ms ease;
         position: relative;
         cursor: pointer;
         &:hover{
+            background-color: $li;
+        }
+        &.active{
             background-color: $li;
         }
         .sidebar-li-ico{

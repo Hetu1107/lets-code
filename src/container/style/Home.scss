@@ -39,10 +39,13 @@ body {
     justify-content: center;
     align-items: center;
     width: calc(100% - 70px);
+    height: fit-content;
     min-height: 100vh;
     max-height: fit-content;
-    position: relative;
+    position: absolute;
     transition: all 500ms ease;
+    right: 0;
     margin: 0;
     padding: 0;
+    // background-color: chocolate;
 }
