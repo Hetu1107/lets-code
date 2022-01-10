@@ -1,4 +1,5 @@
 @import "variable";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
 .top-nav{
     width: 100%;
     position: fixed;
@@ -15,10 +16,35 @@
         width: 70px;
         height: 100%;
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: flex-end;
         align-items: center;
         position: relative;
         transition: all 500ms ease;
+        overflow: hidden;
+        background-color: $purple;
+        div{
+            position: relative;
+            width: 100%;
+            min-width: 70px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            img{
+                width: 35px;
+                height: 35px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-position: center;
+                background-size: contain;
+                margin: 0;
+                padding: 0;
+            }
+        }
     }
     .right-nav{
         display: flex;
@@ -52,6 +78,167 @@
                 margin: 2px 0;
             }
         }
+        .nav-search{
+            width: 45%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            input{
+                width: 70%;
+                border: none;
+                outline: none;
+                border: 1px solid #2c2e33;
+                height: 50%;
+                border-radius: 3px;
+                background: transparent;
+                color: $color;
+                font-size: 16px;
+                padding: 3px 2%;
+                font-family: $rubik;
+                margin-left: 1%;
+            }
+        }
+        .nev-right-right{
+            width: 45%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            .nev-right-button{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                button{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 90%;
+                    padding: 2px 0;
+                    height: 60%;
+                    margin: 0;
+                    padding: 0;
+                    cursor: pointer;
+                    outline: none;
+                    border: none;
+                    color: $color;
+                    background: $dark-green;
+                    font-size: 16px;
+                    font-weight: 400;
+                    border-radius: 4px;
+                    transition: all 300ms ease;
+                    font-family: $rubik;
+                    &:hover{
+                        opacity: 0.7;
+                    }
+                    i{
+                        margin: 0 5px;
+                        font-size: 16px;
+                    }
+                }
+            }
+            .nev-right-profile{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                position: relative;
+                .nav-profile{
+                    width: fit-content;
+                    height: fit-content;
+                    padding: 4px 6px;
+                    margin: 0;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 4px;
+                    transition: all 300ms ease;
+                    cursor: pointer;
+                    position: relative;
+                    &:hover{
+                        background-color: $li;
+                    }
+                    img{
+                        width: 35px;
+                        height: 35px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 50%;
+                        margin: 0;
+                        padding: 0;
+                        background-size: contain;
+                        background-position:center;
+                        margin: 0 2px;
+                    }
+                    h4{
+                        margin: 0;
+                        padding: 0;
+                        font-size: 16px;
+                        color: $color;
+                        margin: 0 7px;
+                        font-family: $rubik;
+                        font-weight: 400;
+                    }
+                    i{
+                        font-size: 10px;
+                        margin: 0 2px;
+                        color: $color;
+                    }
+                }
+                .nav-profile-drop{
+                    position: absolute;
+                    // display: none;
+                    background-color: $navtop;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: fit-content;
+                    top: 90%;
+                    top: -150px;
+                    padding: 0 15px;
+                    align-items: center;
+                    z-index: 10000;
+                    transition: all 300ms ease;
+                    border-radius: 5px;
+                    box-shadow: 0px 0px 35px -3px black;
+                    div{
+                        position: relative;
+                        width: 100%;
+                        height: 50px;
+                        padding: 3px 15px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: row;
+                        transition: all 300ms ease;
+                        cursor: pointer;
+                        i{
+                            margin: 0 3px;
+                            color: $color;
+                            font-size: 16px;
+                        }
+                        h4{
+                            font-family: $rubik;
+                            font-size: 16px;
+                            font-weight: 400;
+                            margin: 0 3px;
+                            color: $color;
+                        }
+                        &:hover{
+                            background-color: $li;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 .sidebar{
@@ -63,6 +250,123 @@
     transition: all 500ms ease;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .side-profile{
+        width: 100%;
+        background-color: transparent;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 70px;
+        flex-direction: row-reverse;
+        padding: 10px 0;
+        transition: all 300ms ease;
+        position: relative;
+        cursor: pointer;
+        &:hover{
+            background-color: $li;
+        }
+        .profile-round{
+            width: 70px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 0;
+            position: absolute;
+            img{
+                width: 35px;
+                height: 35px;
+                background-size: contain;
+                background-position: center;
+                border-radius: 50%;
+                background-color: $background;
+            }
+            .prof-round-bottom{
+                position: absolute;
+                top: 34px;
+                right: 20px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: $error;
+            }
+        }
+        .side-prof-name{
+            width: 100px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position:absolute;
+            right: 70px;
+            h2{
+                font-weight: 400;
+                font-family: $rubik;
+                font-size: 16px;
+                color: $li-color;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+    .sidebar-li{
+        width: 100%;
+        background-color: transparent;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 70px;
+        flex-direction: row-reverse;
+        padding: 10px 0;
+        transition: all 300ms ease;
+        position: relative;
+        cursor: pointer;
+        &:hover{
+            background-color: $li;
+        }
+        .sidebar-li-ico{
+            width: 70px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 0;
+            position: absolute;
+            i{
+                width: 35px;
+                height: 35px;
+                background-color: $li;
+                border-radius: 50%;
+                font-size: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $color;
+            }
+        }
+        .sidebar-li-h2{
+            width: 100px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position:absolute;
+            right: 70px;
+            h2{
+                font-weight: 400;
+                font-family: $rubik;
+                font-size: 16px;
+                color: $li-color;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
 }
 // background-color: #0f1015;
 // #0d6efd
