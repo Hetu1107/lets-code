@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-$background: #190629;
-$primar-color : #1195dc;
-$blue : #0ebcf3;
-$secondary-color : #ba87cf;
-$color : #fff;
-$purple : #8e44ac;
-$green : #29baa5;
-$error: #cf6679;
-$round : #3d0e63;
-$navtop : #340e538e;
+@import "variable";
 // colors 
 .green{
     &.background{
@@ -44,8 +35,7 @@ $navtop : #340e538e;
 }
 
 .form-main{
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
     height: fit-content;
     min-height: 100vh;
     display: flex;
@@ -64,8 +54,7 @@ $navtop : #340e538e;
     border-radius: 8px;
     margin: 10px 10px;
     padding: 5px 5px;
-    background-color: $color;
-    z-index: 100;
+    background-color: $card;
     position: relative;
     overflow: hidden;
     .register-form{
@@ -103,7 +92,8 @@ $navtop : #340e538e;
         justify-content: center;
         align-items: center;
         font-family: 'DM Sans', sans-serif;
-        background-color: $background;
+        background-color: $blue;
+        background-color: transparent;
         color: $color;
         // background-image: url("https://images.pexels.com/photos/2045600/pexels-photo-2045600.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
         background-repeat: no-repeat;
@@ -116,7 +106,7 @@ $navtop : #340e538e;
         }
     }
     .form-body {
-        background-color: $color;
+        background-color: transparent;
         width: 100%;
         height: fit-content;
         // padding: 10px 0;
@@ -138,7 +128,7 @@ $navtop : #340e538e;
         padding: 5px 0;
     }
     .form-input-label {
-        color: $background;
+        color: $color;
         position: absolute;
         top: 15px;
         transition: all 200ms ease;
@@ -150,7 +140,8 @@ $navtop : #340e538e;
         border: 0;
         z-index: 1;
         background-color: transparent;
-        border-bottom: 2px solid $background;
+        border-bottom: 2px solid $text-muted;
+        color: $color;
         font: inherit;
         font-size: 18px;
         font-family: 'DM Sans', sans-serif;
@@ -172,7 +163,7 @@ $navtop : #340e538e;
         font-weight: 600;
         width: 90%;
         margin: 10px auto;
-        background-color: $blue;
+        background-color: $green;
         box-shadow: none;
         padding: 15px 0;
         outline: none;
@@ -191,12 +182,13 @@ $navtop : #340e538e;
         font-family: 'DM Sans', sans-serif;
         padding: 5px 0;
         margin: 10px 0;
+        color: $color;
         // margin: 0;
         h4{
             display: block;
             margin: 0;
             padding: 0;
-            color: $secondary-color;
+            color: $blue;
             cursor: pointer;
             transition: all 200ms ease;
             &:hover{
@@ -214,11 +206,12 @@ $navtop : #340e538e;
     position: fixed;
     background-color: $round;
     opacity: 0.5;
+    z-index: -10000;
     &.one{
         width: 400px;
         height: 400px;
         top: 30%;
-        left: -100px;
+        left: 0%;
         animation: round-animation 4s infinite;
     }
     &.two{

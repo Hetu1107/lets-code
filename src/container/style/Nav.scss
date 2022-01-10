@@ -1,143 +1,70 @@
-$background: #190629;
-$primar-color : #1195dc;
-$blue : #0ebcf3;
-$secondary-color : #ba87cf;
-$color : #fff;
-$purple : #8e44ac;
-$green : #29baa5;
-$error: #cf6679;
-$round : #3d0e63;
-$navtop : #340e538e;
-nav {
+@import "variable";
+.top-nav{
     width: 100%;
     position: fixed;
     left: 0;
-    height: fit-content;
-    z-index: 500;
     top: 0;
+    height: 50px;
+    background-color: #191c24;
+    z-index: 1000;
+    transition: all 500ms ease;
     display: flex;
-    flex-direction: column;
-    .blue-top {
-        width: 100%;
-        background-color: $blue;
-        height: 0px;
+    justify-content: center;
+    align-items: center;
+    .left-nav{
+        width: 70px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        transition: all 500ms ease;
     }
-    .white-top {
-        width: 100%;
-        background-color: $navtop;
-        height: 50px;
-        // box-shadow: 0 2px 4px -1px rgba(255, 255, 255, 0.25);
-        .side-bar {
-            width: 50vw;
-            height: 100%;
-            position: fixed;
-            top: 0px;
-            visibility: hidden;
-            transform: translate(-110%);
-            z-index: 1000;
-            background-color: $color;
-            transition: 1s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .full-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.247);
-            opacity: 0.2;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            // display: none;
-            transition: all 1s ease;
-            position: fixed;
-            top: 0;
-            left: 0;
-          }
-        #check-menu {
-            display: none;
-        }
-        #check-menu:checked {
-            ~div.full-page {
-                display: block;
-                opacity: 1;
-                visibility: visible;
-              }
-            ~div.side-bar {
-                transform: translate(0px);
-                visibility: visible;
-            }
-            + label {
-                background-color: $background;
-                .menu-line {
-                    background-color: $color;
-                    &:nth-child(2),
-                    &:nth-child(5) {
-                        transform: scale(0);
-                    }
-                    &:nth-child(1) {
-                        transform: translateY(15px) rotate(45deg);
-                    }
-                    &:nth-child(4) {
-                        transform: translateY(15px) rotate(-45deg);
-                    }
-                    &:nth-child(3) {
-                        transform: translateY(-15px) rotate(-45deg);
-                    }
-                    &:nth-child(6) {
-                        transform: translateY(-15px) rotate(45deg);
-                    }
-                }
-            }
-        }
-        label[for="check-menu"] {
-            display: block;
-            position: fixed;
-            top: 8px;
-            left: 20px;
-            z-index: 1001;
+    .right-nav{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: calc(100% - 70px);
+        height: 100%;
+        position: relative;
+        transition: all 500ms ease;
+        .nav-toggle{
             width: 30px;
-            height: 30px;
-            padding: 2px;
-            background-color: $color;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 200ms ease;
-        }
-        .menu-bar {
-            width: 100%;
             height: 100%;
-            display: flex;
-            flex-flow: column wrap;
-            align-content: center;
-            align-items: center;
-            text-align: center;
             margin: 0;
             padding: 0;
-            .menu-line {
-                display: block;
-                width: 15px;
+            position: absolute;
+            left: 5px;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            span{
+                margin: 0;
+                padding: 0;
+                width: 25px;
                 height: 3px;
-                margin: 3.5px 0px;
-                border-top-left-radius: 2px;
-                border-bottom-left-radius: 2px;
-                background-color: $round;
-                transition: 500ms;
-                transform-origin: right center;
-                &:nth-child(4),
-                &:nth-child(5),
-                &:nth-child(6) {
-                    border-top-left-radius: 0;
-                    border-bottom-left-radius: 0;
-                    border-top-right-radius: 2px;
-                    border-bottom-right-radius: 2px;
-                    transform-origin: left center;
-                }
+                background-color: #6c7293;
+                margin: 2px 0;
             }
         }
     }
 }
+.sidebar{
+    width: 70px;
+    min-height: 100vh;
+    height: 100%;
+    background-color: #191c24;
+    position: relative;
+    transition: all 500ms ease;
+    margin: 0;
+    padding: 0;
+}
+// background-color: #0f1015;
+// #0d6efd
+// box : #191c24
+// border-box: 1px solid rgba(0, 0, 0, 0.125)

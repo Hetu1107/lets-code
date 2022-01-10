@@ -1,30 +1,34 @@
 import React from 'react'
 import '../style/Nav.scss'
 
+let toggle = 0;
 function Nav() {
     return (
-        <nav>
-        <div class="top-nav">
-            <div class="blue-top">
-            </div>
-            <div class="white-top">
-                <input type="checkbox" name="" id="check-menu"/>
-                <label for="check-menu">
-                    <div class="menu-bar">
-                      <span class="menu-line"></span>
-                      <span class="menu-line"></span>
-                      <span class="menu-line"></span>
-                      <span class="menu-line"></span>
-                      <span class="menu-line"></span>
-                      <span class="menu-line"></span>
-                    </div>
-                  
-                  </label>
-                  <div class="full-page"></div>
-                  <div class="side-bar"></div>
-            </div>
-        </div>
-    </nav>
+        <nav class="top-nav">
+                <div className='left-nav' id='left-nav'></div>
+                <div className='right-nav' id='right-nav'>
+                <button className='nav-toggle' onClick={()=>{
+                    if(toggle==0){
+                    document.getElementById('left-nav').style.width = "170px";
+                    document.getElementById('right-nav').style.width = "calc(100% - 170px)";
+                    document.getElementById('sidebar').style.width = "170px";
+                    document.getElementById('main-home-page').style.width = "calc(100% - 170px)";
+                    toggle = 1;
+                    }
+                    else{
+                        document.getElementById('left-nav').style.width = "70px";
+                    document.getElementById('right-nav').style.width = "calc(100% - 70px)";
+                    document.getElementById('sidebar').style.width = "70px";
+                    document.getElementById('main-home-page').style.width = "calc(100% - 70px)"
+                    toggle = 0;
+                    }
+                }}>
+                     <span></span>   
+                     <span></span>
+                     <span></span>
+                </button>
+                </div>
+        </nav>
     )
 }
 

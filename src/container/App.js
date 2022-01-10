@@ -1,11 +1,11 @@
-import LoginSignup from "./Login-signup/LoginSignup";
-import Nav from "./Navbar/Nav";
+import Home from "./Home/Home";
+import Sidebar from "./Navbar/Sidebar";
 import './style/Home.scss'
 function App() {
   return (
     <>
-    <LoginSignup/>
-    <Nav/>
+    <Sidebar/>
+    <Home/>
     </>
   );
 }
