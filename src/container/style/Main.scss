@@ -3,4 +3,97 @@
 .main-home{
     width: 100%;
     position: relative;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.fixed-main{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-image: url('../Lottie//img.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+}
+.main-front-page{
+    width: 50%;
+    position: relative;
+    height: fit-content;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-overflow:clip;
+    background-color: $card;
+    border-radius: 5px;
+    padding: 10px 5px;
+    border: $border-box;
+}
+.main-img{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin: 5px 0;
+}
+.main-head{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-overflow: clip;
+    text-align: center;
+    margin: 10px 0;
+    h1{
+        font-size: 3rem;
+        color: $color;
+        font-family: $roboto;
+        margin: 0;
+        padding: 0;
+    }
+}
+.main-button{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    button{
+    width: 120px;
+    height: 40px;
+    padding: 5px;
+    background-color: $green;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: $color;
+    font-family: $poppins;
+    transition: all 200ms ease;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.7;
+    }
+}
+}
+@media only screen and (max-width: 800px){
+    .main-front-page{
+        width: 90%;
+    }
 }

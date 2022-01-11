@@ -4,6 +4,8 @@ import "../style/Register.scss";
 function LoginSignup() {
   return (
     <div className="form-main">
+      <div className="fixed-main">
+        </div>
       <div class="round one"></div>
       <div class="round two"></div>
       <div class="round three"></div>
