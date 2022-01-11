@@ -1,0 +1,319 @@
+@import "variable";
+.main-profile-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: fit-content;
+    position: relative;
+    overflow-y: scroll;
+}
+.main-profile-page::-webkit-scrollbar {
+    display: none;
+}
+.main-profile-top {
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin: 0 1%;
+    padding: 30px 0;
+    margin-top: 100px;
+    background-color: $cardlow;
+    border: $border-box;
+    border-radius: 50px;
+    .main-profile-avtar {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        .main-profile-avtar-frame {
+            width: fit-content;
+            height: fit-content;
+            margin-right: 100px;
+            img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+        }
+    }
+    .main-profile-detail {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        .details {
+            width: 100%;
+            margin-left: 10px;
+            height: fit-content;
+            display: flex;
+            margin: 10px 0;
+            flex-direction: column;
+            h3 {
+                font-family: $rubik;
+                font-weight: 300;
+                font-size: 18px;
+                color: $color;
+                margin: 4px 2px;
+            }
+            input {
+                width: 60%;
+                border: none;
+                border-radius: 4px;
+                outline: none;
+                height: 30px;
+                padding: 2px 5px;
+                background-color: $card;
+                font-size: 16px;
+                color: $color;
+                font-family: $rubik;
+            }
+        }
+        .details-button {
+            width: 60%;
+            height: fit-content;
+            margin: 5px 0;
+            display: flex;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            align-items: center;
+            button {
+                margin: 0 5px;
+                outline: none;
+                border: none;
+                width: 100px;
+                height: 35px;
+                border-radius: 5px;
+                font-size: 16px;
+                color: $color;
+                cursor: pointer;
+                transition: all 200ms ease;
+                &:nth-child(1) {
+                    background-color: $error;
+                }
+                &:nth-child(2) {
+                    background-color: $green;
+                }
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
+.main-profile-bottom {
+    width: 98%;
+    margin: 0 1%;
+    height: fit-content;
+    padding: 10px 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: $cardlow;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    .main-profile-left {
+        width: 50%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .main-profile-right {
+        width: 50%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .main-profile-head {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10%;
+        h2 {
+            font-size: 17px;
+            margin: 0;
+            padding: 4px;
+            font-family: $poppins;
+            color: $li-color;
+            // background-color: $background;
+            border-bottom: 1px solid $error;
+        }
+    }
+    .main-profile-bot {
+        width: 90%;
+        height: 80%;
+        margin: 5% 0;
+        background-color: $card;
+        overflow-y: scroll;
+        border-radius: 10px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        &::-webkit-scrollbar {
+            display: block;
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+            transition: all 200ms ease;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: #a8bbbf;
+        }
+        .empty{
+            width: 90%;
+            height: fit-content;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h3{
+                font-size: 16px;
+                color: $color;
+                font-family: $poppins;
+                font-weight: 300;
+        }
+        }
+        .main-bot-box{
+            width: 90%;
+            border-radius: 10px;
+            background-color: $li;
+            height: fit-content;
+            display: flex;
+            flex-direction: row;
+            padding: 10px 1%;
+            margin: 5px 0;
+            &:nth-child(1){
+                margin-top: 20px;
+            }
+            .left{
+                width: 60%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                &.noti{
+                    width: 80%;
+                }
+                img{
+                    width: 35px;
+                    height: 35px;
+                    background-size: contain;
+                    border-radius: 50%;
+                    margin: 0 4px;
+                    margin-left: 10px;
+                }
+                h4{
+                    font-size: 16px;
+                    color: $li-color;
+                    font-family: $rubik;
+                    padding: 0;
+                    margin: 0 4px;
+                    margin-left: 10px;
+                }
+            }
+            .right{
+                width: 40%;
+                height: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                i{
+                    border-radius: 50%;
+                    padding: 8px;
+                    margin: 0 4px;
+                    font-size: 16px;
+                    color: $color;
+                    cursor: pointer;
+                    transition: all 200ms ease;
+                    &:nth-child(1){
+                        background-color: $green;
+                    }
+                    &:nth-child(2){
+                        background-color: $error;
+                    }
+                    &:hover{
+                        opacity: 0.7;
+                    }
+                }
+                &.not{
+                    width: 20%;
+                    i{
+                        background-color: transparent;
+                        color: $error;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 700px) {
+    .main-profile-top {
+        flex-direction: column;
+        .main-profile-avtar {
+            width: 100%;
+            margin-right: 0;
+            margin: 0;
+            margin: 10px 0;
+            justify-content: center;
+            align-items: center;
+            .main-profile-avtar-frame {
+                margin: 0;
+            }
+        }
+        .main-profile-detail {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            .details {
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+            }
+            .details-button {
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                margin-left: 5px;
+                margin-top: 10px;
+            }
+        }
+    }
+    .main-profile-bottom{
+        flex-direction: column;
+        .main-profile-left{
+            width: 80%;
+        }
+        .main-profile-right{
+            width: 80%;
+        }
+    }
+}

@@ -45,10 +45,6 @@ function Nav() {
                 "100vw";
                 document.getElementById("sidebar").style.width = "0px";
                 // document.getElementById("left-nav").style.width = "70px";
-                console.log('jsjnf');
-                if(width>700){
-                  document.getElementById("sidebar").style.width = "0px";
-                }
               }
               else{
               document.getElementById("left-nav").style.width = "70px";

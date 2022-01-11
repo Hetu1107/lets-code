@@ -20,7 +20,7 @@ const sidebarLi = [
   {
     name: "About",
     icon: "fas fa-snowman",
-    to: "/About",
+    to: "/profile",
   },
   {
     name: "Log-Out",
