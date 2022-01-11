@@ -49,3 +49,9 @@ body {
     padding: 0;
     // background-color: chocolate;
 }
+
+@media only screen and (max-width: 1000px){
+    .main-home-page{
+        width: 100vw;
+    }
+}

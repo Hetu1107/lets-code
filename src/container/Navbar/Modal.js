@@ -2,7 +2,7 @@ import React from "react";
 import '../style/Modal.scss'
 function Modal() {
   return (
-    <div id="modal" class="modal modal-active">
+    <div id="modal" class="modal">
       <div class="modal__content">
           <h1>Enter new room name :</h1>
           <input type="text"/>

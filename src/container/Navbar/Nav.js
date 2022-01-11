@@ -1,9 +1,14 @@
 import React from "react";
+import { useState } from "react/cjs/react.development";
 import "../style/Nav.scss";
 
 let toggle = 0;
 let drop = 0;
 function Nav() {
+  const [width,setwidth] = useState(window.screen.width);
+  window.addEventListener('resize',()=>{
+      setwidth(window.screen.width);
+  })
   return (
     <nav class="top-nav">
       <div className="left-nav" id="left-nav">
@@ -13,9 +18,18 @@ function Nav() {
       </div>
       <div className="right-nav" id="right-nav">
         <button
+          id="nav-toggle"
           className="nav-toggle"
           onClick={() => {
             if (toggle == 0) {
+              if(width<=1000){
+                // document.getElementById("right-nav").style.width =
+                // "calc(100%)";
+                document.getElementById("main-home-page").style.width =
+                "100vw";
+                document.getElementById("sidebar").style.width = "170px";
+              }
+              else{
               document.getElementById("left-nav").style.width = "170px";
               document.getElementById("left-nav").style.justifyContent = "center";
               document.getElementById("right-nav").style.width =
@@ -23,8 +37,20 @@ function Nav() {
               document.getElementById("sidebar").style.width = "170px";
               document.getElementById("main-home-page").style.width =
                 "calc(100% - 170px)";
+              }
               toggle = 1;
             } else {
+              if(width<=1000){
+                document.getElementById("main-home-page").style.width =
+                "100vw";
+                document.getElementById("sidebar").style.width = "0px";
+                // document.getElementById("left-nav").style.width = "70px";
+                console.log('jsjnf');
+                if(width>700){
+                  document.getElementById("sidebar").style.width = "0px";
+                }
+              }
+              else{
               document.getElementById("left-nav").style.width = "70px";
               document.getElementById("right-nav").style.width =
                 "calc(100% - 70px)";
@@ -32,6 +58,7 @@ function Nav() {
               document.getElementById("sidebar").style.width = "70px";
               document.getElementById("main-home-page").style.width =
                 "calc(100% - 70px)";
+              }
               toggle = 0;
             }
           }}
