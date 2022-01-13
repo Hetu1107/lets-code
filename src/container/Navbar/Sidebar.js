@@ -28,7 +28,7 @@ const sidebarLi = [
     to: "/",
   },
 ];
-function Sidebar() {
+function Sidebar(props) {
   let [active, setActive] = useState("Home");
   useEffect(() => {
     document.getElementById(active).classList.add("active");
@@ -38,11 +38,11 @@ function Sidebar() {
       <Link to="/register">
         <div className="side-profile">
           <div className="profile-round">
-            <img src="https://cdn4.vectorstock.com/i/thumb-large/77/83/cute-young-man-with-glasses-avatar-cartoon-style-vector-36327783.jpg" />
+            <img src={props.user_Avtar} />
             <div className="prof-round-bottom"></div>
           </div>
           <div className="side-prof-name">
-            <h2>Login</h2>
+            <h2>{props.user_Name}</h2>
           </div>
         </div>
       </Link>

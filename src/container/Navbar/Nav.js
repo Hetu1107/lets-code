@@ -4,7 +4,7 @@ import "../style/Nav.scss";
 
 let toggle = 0;
 let drop = 0;
-function Nav() {
+function Nav(props) {
   const [width,setwidth] = useState(window.screen.width);
   window.addEventListener('resize',()=>{
       setwidth(window.screen.width);
@@ -83,8 +83,8 @@ function Nav() {
                     drop = 0;
                 }
             }}>
-              <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/profile-1506810-1278719.png"/>
-              <h4>User</h4>
+              <img src={props.user_Avtar} style={{borderRadius: "50%"}}/>
+              <h4>{props.user_Name}</h4>
               <i class="fas fa-sort-down"></i>
             </div>
             <div className="nav-profile-drop" id="nav-profile-drop">
