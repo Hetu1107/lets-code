@@ -10,7 +10,7 @@ const sidebarLi = [
   {
     name: "Friends",
     icon: "fas fa-user-friends",
-    to: "/",
+    to: "/user/friends",
   },
   {
     name: "Rooms",
@@ -20,7 +20,7 @@ const sidebarLi = [
   {
     name: "About",
     icon: "fas fa-snowman",
-    to: "/profile",
+    to: "/user",
   },
   {
     name: "Log-Out",

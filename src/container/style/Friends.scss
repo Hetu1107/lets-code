@@ -1,0 +1,241 @@
+@import "variable";
+
+::-webkit-scrollbar{
+    display: none;
+}
+.main-friend-page {
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    margin-top: 100px;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+    .search-results {
+        width: 90%;
+        height: 200px;
+        border-radius: 10px;
+        padding: 3px 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: $card;
+        overflow-y: scroll;
+        &.select{
+            cursor: pointer;
+            .main-bot-box{
+                transition: all 200ms ease;
+            &:hover{
+                background-color: $background;
+            }
+        }
+        }
+        .empty {
+            width: 90%;
+            height: fit-content;
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h3 {
+                font-size: 16px;
+                color: $color;
+                font-family: $poppins;
+                font-weight: 300;
+            }
+        }
+        &::-webkit-scrollbar {
+            display: block;
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #d6dee1;
+            border-radius: 20px;
+            transition: all 200ms ease;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: #a8bbbf;
+        }
+        .main-bot-box{
+            width: 90%;
+            height: fit-content;
+            padding: 4px 0;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: $li;
+            margin: 5px 0;
+            &.active{
+                background-color: $background;
+            }
+            &:nth-child(1){
+                margin-top: 20px;
+            }
+            .left{
+                width: 70%;
+                min-height: 100%;
+                max-height: 100%;
+                display: flex;
+                flex-direction: row;
+                text-overflow: clip;
+                align-items: center;
+                img{
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    margin: 0 5px;
+                }
+                h4{
+                    margin: 0 3px;
+                    padding: 0;
+                    font-size: 14px;
+                    font-weight: 300;
+                    font-family: $rubik;
+                    color: $li-color;
+                }
+            }
+            .right{
+                width: 30%;
+                min-height: 100%;
+                max-height: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                i{
+                    font-size: 16px;
+                    margin: 0 8px;
+                    cursor: pointer;
+                    color: $green;
+                    transition: all 300ms ease;
+                    &:hover{
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+}
+.invite-friends {
+    width: 90%;
+    height: fit-content;
+    // margin-top: 100px;
+    background-color: $cardlow;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    border-radius: 10px;
+}
+.invite-type {
+    width: 50%;
+    min-height: 100%;
+    max-height: 100%;
+    transition: all 300ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 25px;
+        font-weight: 400;
+        color: $color;
+        font-family: $rubik;
+        margin: 5px 0;
+    }
+    input {
+        background-color: transparent;
+        width: 50%;
+        border-radius: 4px;
+        padding: 4px 1%;
+        background-color: $card;
+        font-size: 16px;
+        color: $color;
+        border: none;
+        outline: none;
+        margin: 5px 0;
+        font-family: $rubik;
+    }
+}
+.invite-result {
+    width: 50%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    transition: all 300ms ease;
+    h2 {
+        padding: 0;
+        margin: 5px 0;
+        margin-left: 10px;
+        font-size: 16px;
+        font-weight: 300;
+        font-family: $poppins;
+        color: $li-color;
+    }
+}
+.main-friends{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+    max-height: 100%;
+    transition: all 300ms ease;
+    display: flex;
+    background-color: $cardlow;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.friends-list{
+    width: 50%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    transition: all 300ms ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2{
+        font-size: 20px;
+        margin: 5px;
+        color: $li-color;
+        font-family: $poppins;
+        padding: 0;
+    }
+}
+.friends-common{
+    width: 50%;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    transition: all 300ms ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2{
+        font-size: 20px;
+        margin: 5px;
+        color: $li-color;
+        font-family: $poppins;
+        padding: 0;
+    }
+}
