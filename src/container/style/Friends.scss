@@ -8,6 +8,7 @@
     height: fit-content;
     min-height: 100vh;
     margin-top: 100px;
+    // top: 100px;
     max-height: fit-content;
     display: flex;
     flex-direction: column;
@@ -237,5 +238,39 @@
         color: $li-color;
         font-family: $poppins;
         padding: 0;
+    }
+}
+@media only screen and (max-width: 700px){
+    .main-friend-page{
+        top: 100px;
+    }
+    .invite-friends{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 100px;
+        input{
+            width: 80%;
+        }
+    }
+    .invite-type{
+        width: 80%;
+        margin-bottom: 10px;
+    }
+    .invite-result{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .main-friends{
+        flex-direction: column;
+    }
+    .friends-list{
+        width: 80%;
+    }
+    .friends-common{
+        width: 80%;
     }
 }

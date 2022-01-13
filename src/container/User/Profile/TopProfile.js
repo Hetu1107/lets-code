@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ReturnAvtars from "../../Avtars/Avtar";
-import ModalCode from "../../Navbar/ModalCode";
+import ModalCode from "../../Modals/ModalCode";
 const Avtars = ReturnAvtars();
 function TopProfile(props) {
   const [userName, setName] = useState(props.props.user_Name);
   const [userEmail, setEmail] = useState(props.props.user_Email);
   const [image, setImg] = useState(props.props.user_Avtar);
   const [editMode, setMode] = useState(false);
-  const [imgIndex, setImgIndex] = useState(0);
+  const [imgIndex, setImgIndex] = useState(props.props.img_Index);
   const leftMove = () => {
     let inde = 0;
     if (imgIndex == 0) {
@@ -38,7 +38,16 @@ function TopProfile(props) {
   });
   return (
     <div className="main-profile-top">
-      <ModalCode setMode = {setMode} userName={userName} userEmail={userEmail} image={image} props = {props.props} setName = {setName} setImg={setImg} setEmail={setEmail}/>
+      <ModalCode
+        setMode={setMode}
+        userName={userName}
+        userEmail={userEmail}
+        image={image}
+        props={props.props}
+        setName={setName}
+        setImg={setImg}
+        setEmail={setEmail}
+      />
       <div className="main-profile-avtar">
         <div className="main-profile-avtar-frame">
           <img src={image} />

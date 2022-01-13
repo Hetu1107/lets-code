@@ -1,0 +1,68 @@
+@import '../style/variable';
+.loading_main{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 200000;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading{
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border-top: 10px solid $green;
+    position: relative;
+    animation: a1 2s linear infinite;
+  }
+  
+  .loading::before,.loading::after{
+    content: '';
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 0;
+    top: -10px;
+    box-sizing: border-box;
+    border-radius: 50%;
+  }
+  
+  .loading::before{
+    border-top: 10px solid $blue;
+    transform: rotate(120deg);
+  }
+  
+  .loading::after{
+    border-top: 10px solid $error;
+    transform: rotate(240deg);
+  }
+  
+  .loading span{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    color: #fff;
+    font-family: $rubik;
+    font-weight: 200;
+    text-align: center;
+    line-height: 200px;
+    animation: a2 2s linear infinite;
+  }
+  
+  @keyframes a1 {
+    to{
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes a2 {
+    to{
+      transform: rotate(-360deg);
+    }
+  }

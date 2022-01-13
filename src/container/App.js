@@ -1,17 +1,14 @@
 import Home from "./Home/Home";
-import Sidebar from "./Navbar/Sidebar";
-import './style/Home.scss';
-import {BrowserRouter as Router} from 'react-router-dom';
-import Modal from "./Navbar/Modal";
-import ModalCode from "./Navbar/ModalCode";
+import "./style/Home.scss";
+import { BrowserRouter as Router } from "react-router-dom";
+import Modal from "./Modals/Modal";
 function App() {
   return (
     <Router>
-    <>
-    {/* <Sidebar/> */}
-    <Modal/>
-    <Home/>
-    </>
+      <>
+        <Modal />
+        <Home />
+      </>
     </Router>
   );
 }

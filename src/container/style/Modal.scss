@@ -40,6 +40,17 @@
         font-weight: 400;
         font-family: $rubik;
     }
+    h4{
+        margin: 0;
+        padding: 0;
+        color: $error;
+        font-size: 12px;
+        font-family: $rubik;
+        font-weight: 100;
+        margin-bottom: 10px;
+        transition: all 300ms ease;
+        opacity: 0;
+    }
     input{
         background-color: transparent;
         outline: none;
