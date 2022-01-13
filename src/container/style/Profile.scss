@@ -37,10 +37,50 @@
             width: fit-content;
             height: fit-content;
             margin-right: 100px;
+            position: relative;
+            padding: 20px;
             img {
                 width: 100px;
                 height: 100px;
                 border-radius: 50%;
+            }
+            .left-arrow{
+                display: none;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: 45%;
+                left: 0px;
+                i{
+                    color: $color;
+                    font-size: 14px;
+                    transition: all 200ms ease;
+                    cursor: pointer;
+                    &:hover{
+                        opacity: 0.7;
+                    }
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            .right-arrow{
+                display: none;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                top: 45%;
+                right: 0%;
+                cursor: pointer;
+                i{
+                    color: $color;
+                    font-size: 14px;
+                    transition: all 200ms ease;
+                    &:hover{
+                        opacity: 0.7;
+                    }
+                    margin: 0;
+                    padding: 0;
+                }
             }
         }
     }
