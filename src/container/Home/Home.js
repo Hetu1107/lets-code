@@ -10,6 +10,7 @@ import src2 from "../../assets/avtars/3.jpg";
 import Friends from "../User/Friends";
 import { useState } from "react/cjs/react.development";
 import Sidebar from "../Navbar/Sidebar";
+import Room from "../Rooms/Room";
 function Home() {
   const total_Users = [
     {
@@ -55,9 +56,42 @@ function Home() {
       rooms: ["Room1", "Room2"],
     },
   ];
+  const Rooms = [
+    {
+      id : 1234,
+      name : 'Hetu Patel',
+      owner : 'Hetz',
+    },
+    {
+      id: 4567,
+      name : 'Hetu Patel',
+      owner : 'Hetz',
+    },
+    {
+      id: 687,
+      name : 'Hetu Patel',
+      owner : 'Hetz',
+    },
+    {
+      id : 1234,
+      name : 'Hetu Patel',
+      owner : 'Hetz',
+    },
+    {
+      id: 4567,
+      name : 'Hetu Patel',
+      owner : 'Hetz',
+    },
+    {
+      id: 687,
+      name : 'Hetu Patel',
+      owner : 'Hetz',
+    },
+  ]
   const [user_Name, set_User_Name] = useState("Hetu1107");
   const [user_Email, set_User_Email] = useState("hetu200211@gmail.com");
   const [user_Avtar, set_User_Avtar] = useState(src);
+  const [user_Rooms,set_User_Rooms] = useState(Rooms);
   return (
     <div className="main-home-page" id="main-home-page">
       <Sidebar
@@ -89,6 +123,7 @@ function Home() {
           }
         />
         <Route path="/user/friends" element={<Friends user_Friends={user_Friends} total_Users={total_Users} />} />
+        <Route path="/user/rooms" element={<Room user_Rooms={user_Rooms}/>}/>
         <Route path="*" element={<Main />} />
       </Routes>
     </div>

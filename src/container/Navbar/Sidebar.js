@@ -15,7 +15,7 @@ const sidebarLi = [
   {
     name: "Rooms",
     icon: "far fa-sticky-note",
-    to: "/",
+    to: "/user/rooms",
   },
   {
     name: "About",
