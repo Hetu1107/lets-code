@@ -277,7 +277,8 @@
     .side-profile{
         width: 100%;
         background-color: transparent;
-        height: 40px;
+        min-height: 40px;
+        max-height: fit-content;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -286,6 +287,7 @@
         transition: all 300ms ease;
         position: relative;
         cursor: pointer;
+        text-overflow: clip;
         &:hover{
             background-color: $li;
         }
@@ -318,12 +320,19 @@
         .side-prof-name{
             width: 100px;
             height: 100%;
+            height: fit-content;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             position:absolute;
             right: 70px;
+            text-overflow:clip;
             h2{
+                width: 90px;
+                height: 100%;
+                overflow-x: hidden;
+                text-overflow:ellipsis;
                 font-weight: 400;
                 font-family: $rubik;
                 font-size: 16px;
@@ -336,7 +345,8 @@
     .sidebar-li{
         width: 100%;
         background-color: transparent;
-        height: 40px;
+        min-height: 40px;
+        max-height: fit-content;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -379,6 +389,7 @@
             align-items: center;
             position:absolute;
             right: 70px;
+            text-overflow:ellipsis;
             h2{
                 font-weight: 400;
                 font-family: $rubik;
