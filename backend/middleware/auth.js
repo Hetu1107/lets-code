@@ -17,7 +17,7 @@ exports.protect = async (req,res,next)=>{
         if(!user){
             return next(new ErrorResponse("No user find",404));
         }
-        req.user = user;
+        req.id = user._id;
         next();
     }catch(e){
         return next(new ErrorResponse("Login First",401));

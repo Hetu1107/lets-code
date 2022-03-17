@@ -3,10 +3,10 @@ import "../style/Profile.scss";
 import BottomProfile from "./Profile/BottomProfile";
 import TopProfile from "./Profile/TopProfile";
 
-function Profile(props) {
+function Profile() {
   return (
     <div className="main-profile-page">
-      <TopProfile props = {props}/>
+      <TopProfile/>
       <BottomProfile />
     </div>
   );

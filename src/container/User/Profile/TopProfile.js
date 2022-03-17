@@ -3,11 +3,11 @@ import ReturnAvtars from "../../Avtars/Avtar";
 import ModalCode from "../../Modals/ModalCode";
 const Avtars = ReturnAvtars();
 function TopProfile(props) {
-  const [userName, setName] = useState(props.props.user_Name);
-  const [userEmail, setEmail] = useState(props.props.user_Email);
-  const [image, setImg] = useState(props.props.user_Avtar);
+  const [userName, setName] = useState("");
+  const [userEmail, setEmail] = useState("");
+  const [image, setImg] = useState("");
   const [editMode, setMode] = useState(false);
-  const [imgIndex, setImgIndex] = useState(props.props.img_Index);
+  const [imgIndex, setImgIndex] = useState("");
   const leftMove = () => {
     let inde = 0;
     if (imgIndex == 0) {
@@ -36,18 +36,13 @@ function TopProfile(props) {
       document.getElementById("right-arrow").style.display = "none";
     }
   });
+
+  // updating the user details 
+  const updateDetails = ()=>{
+
+  }
   return (
     <div className="main-profile-top">
-      <ModalCode
-        setMode={setMode}
-        userName={userName}
-        userEmail={userEmail}
-        image={image}
-        props={props.props}
-        setName={setName}
-        setImg={setImg}
-        setEmail={setEmail}
-      />
       <div className="main-profile-avtar">
         <div className="main-profile-avtar-frame">
           <img src={image} />
@@ -103,15 +98,7 @@ function TopProfile(props) {
           >
             Edit
           </button>
-          <button
-            onClick={() => {
-              document
-                .getElementById("modal-code")
-                .classList.add("modal-active");
-            }}
-          >
-            Save
-          </button>
+          <button onClick={updateDetails}>Save</button>
         </div>
       </div>
     </div>
