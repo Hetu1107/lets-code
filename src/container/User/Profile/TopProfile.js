@@ -1,35 +1,52 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState,useContext } from "react";
 import ReturnAvtars from "../../Avtars/Avtar";
+import { LoaderContext } from "../../context/LoaderContext";
+import { NameContext } from "../../context/NameContext";
+import { ProfileContext } from "../../context/ProfileContext";
 import ModalCode from "../../Modals/ModalCode";
 const Avtars = ReturnAvtars();
 function TopProfile(props) {
-  const [userName, setName] = useState("");
-  const [userEmail, setEmail] = useState("");
-  const [image, setImg] = useState("");
+
+  // loader 
+  const setLoad = useContext(LoaderContext);
+  const set_User_Avtar = useContext(ProfileContext);
+  const set_User_Name = useContext(NameContext);
+
+  // states of database 
+  const [userName, setName] = useState(props.username);
+  const [userEmail, setEmail] = useState(props.email);
   const [editMode, setMode] = useState(false);
-  const [imgIndex, setImgIndex] = useState("");
-  const leftMove = () => {
-    let inde = 0;
-    if (imgIndex == 0) {
-      setImgIndex(Avtars.length - 1);
-      inde = Avtars.length - 1;
-    } else {
-      setImgIndex(imgIndex - 1);
-      inde = imgIndex - 1;
-    }
-    setImg(Avtars[inde].src);
-  };
-  const rightMove = () => {
-    let inde = 0;
-    if (imgIndex == Avtars.length - 1) {
-      setImgIndex(0);
-      inde = 0;
-    } else {
-      setImgIndex(imgIndex + 1);
-      inde = imgIndex + 1;
-    }
-    setImg(Avtars[inde].src);
-  };
+  const [imgIndex, setImgIndex] = useState(props.profileIMG);
+
+  // state for updating details
+  const [changeUserName, setChangeUserName] = useState(userName);
+  const [changeEmail, setChangeEmail] = useState(userEmail);
+  const [changeImgIndex, setChangeImgIndex] = useState(imgIndex);
+  const [cahngeIMG,setChangeIMG] = useState(Avtars[changeImgIndex].src);
+
+  // left move photo
+  // const leftMove = () => {
+  //   if (changeImgIndex == 0) {
+  //     setChangeImgIndex(Avtars.length - 1);
+  //   } else {
+  //     setChangeImgIndex(changeImgIndex - 1);
+  //   }
+  //   console.log(changeImgIndex);
+  //   setChangeIMG(Avtars[changeImgIndex].src);
+  // };
+
+  // // right move photo
+  // const rightMove = () => {
+  //   if (changeImgIndex == Avtars.length - 1) {
+  //     setChangeImgIndex(0);
+  //   } else {
+  //     setChangeImgIndex(changeImgIndex + 1);
+  //   }
+  //   console.log(changeImgIndex);
+  //   setChangeIMG(Avtars[changeImgIndex].src);
+  //   // setImg(Avtars[inde].src);
+  // };
   useEffect(() => {
     if (editMode == false) {
       document.getElementById("left-arrow").style.display = "none";
@@ -37,21 +54,61 @@ function TopProfile(props) {
     }
   });
 
-  // updating the user details 
-  const updateDetails = ()=>{
+  // updating the user details
+  const updateDetails = async () => {
+    setLoad(1);
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      let username = changeUserName;
+      let email = changeEmail;
+      let profileIMG = changeImgIndex;
+      await axios.put(
+        `/api/v1/user/update/${localStorage.getItem("id")}`,
+        { username, email, profileIMG },
+        config
+      );
+      setLoad(0);
+    } catch (e) {
+      console.log(e);
+    }
+    setLoad(0);
+  };
 
-  }
+  // return jsx
   return (
     <div className="main-profile-top">
       <div className="main-profile-avtar">
         <div className="main-profile-avtar-frame">
-          <img src={image} />
+          <img src={cahngeIMG} />
           <div className="dot"></div>
           <div className="left-arrow" id="left-arrow">
-            <i class="fas fa-chevron-left" onClick={leftMove}></i>
+            <i class="fas fa-chevron-left" onClick={()=>{
+              console.log(changeImgIndex);
+              if (changeImgIndex == 0) {
+                setChangeImgIndex(Avtars.length - 1);
+                setChangeIMG(Avtars[Avtars.length - 1].src);
+              } else {
+                let r = changeImgIndex;
+                setChangeImgIndex(r - 1);
+                setChangeIMG(Avtars[r-1].src);
+              }
+            }}></i>
           </div>
           <div className="right-arrow" id="right-arrow">
-            <i class="fas fa-chevron-right" onClick={rightMove}></i>
+            <i class="fas fa-chevron-right" onClick={()=>{
+              if (changeImgIndex == Avtars.length - 1) {
+                setChangeImgIndex(0);
+                setChangeIMG(Avtars[0].src);
+              } else {
+                let r = changeImgIndex;
+                setChangeImgIndex(r + 1);
+                setChangeIMG(Avtars[r+1].src);
+              }
+            }}></i>
           </div>
         </div>
       </div>
@@ -59,9 +116,9 @@ function TopProfile(props) {
         <div className="details">
           <h3>Name</h3>
           <input
-            value={userName}
+            value={changeUserName}
             onChange={(e) => {
-              setName(e.target.value);
+              setChangeUserName(e.target.value);
             }}
             onFocus={(e) => {
               if (editMode) {
@@ -75,9 +132,9 @@ function TopProfile(props) {
         <div className="details">
           <h3>Email</h3>
           <input
-            value={userEmail}
+            value={changeEmail}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setChangeEmail(e.target.value);
             }}
             onFocus={(e) => {
               if (editMode) {
@@ -90,15 +147,42 @@ function TopProfile(props) {
         </div>
         <div className="details-button">
           <button
+            id="edit-button"
             onClick={() => {
-              setMode(true);
-              document.getElementById("left-arrow").style.display = "flex";
-              document.getElementById("right-arrow").style.display = "flex";
+              if (editMode === false) {
+                document.getElementById("left-arrow").style.display = "flex";
+                document.getElementById("right-arrow").style.display = "flex";
+                document.getElementById("edit-button").innerText = "Cancel";
+                setMode(true);
+              } else {
+                setChangeUserName(userName);
+                setChangeEmail(userEmail);
+                setChangeImgIndex(imgIndex);
+                setChangeIMG(Avtars[imgIndex].src);
+                document.getElementById("edit-button").innerText = "Edit";
+                document.getElementById("left-arrow").style.display = "none";
+                document.getElementById("right-arrow").style.display = "none";
+                setMode(false);
+              }
             }}
           >
             Edit
           </button>
-          <button onClick={updateDetails}>Save</button>
+          <button
+            onClick={() => {
+              updateDetails();
+              setEmail(changeEmail);
+              setImgIndex(changeImgIndex);
+              setName(changeUserName);
+              setChangeIMG(Avtars[changeImgIndex].src);
+              set_User_Avtar(cahngeIMG);
+              set_User_Name(userName);
+              setMode(false);
+              document.getElementById("edit-button").innerText = "Edit";
+            }}
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>

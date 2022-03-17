@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
   },
   profileIMG: {
     type: Number,
+    default : 1
   },
   friends: [
   ],
