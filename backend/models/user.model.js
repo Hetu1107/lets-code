@@ -47,6 +47,8 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.matchPassword = async function (password) {
   return await bycrypt.compare(password, this.password);
 };
-
+userSchema.methods.getSignedToken = async function(){
+  return jwt.sign({_id : this._id},process.env.JWT_SECRET,process.env.JWT_EXPIER);
+}
 const user = mongoose.model("user", userSchema);
 module.exports = user;

@@ -38,5 +38,6 @@ exports.login = async (req,res,next)=>{
 
 
 const sendToken = (user,statusCode,res) =>{
-    res.status(statusCode).json({success : true,user});
+    const token = user.getSignedToken();
+    res.status(statusCode).json({success : true,token});
 }

@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useContext} from "react";
+import { LoaderContext } from "../context/LoaderContext";
 import "../style/Register.scss";
 
 function LoginSignup() {
+  const setLoad = useContext(LoaderContext);
   return (
     <div className="form-main">
       <div className="fixed-main">

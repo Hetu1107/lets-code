@@ -11,6 +11,8 @@ import Friends from "../User/Friends";
 import { useState } from "react/cjs/react.development";
 import Sidebar from "../Navbar/Sidebar";
 import Room from "../Rooms/Room";
+import Loading from "../Load/Loading";
+import { LoaderContext } from "../context/LoaderContext";
 function Home() {
   const total_Users = [
     {
@@ -92,8 +94,18 @@ function Home() {
   const [user_Email, set_User_Email] = useState("hetu200211@gmail.com");
   const [user_Avtar, set_User_Avtar] = useState(src);
   const [user_Rooms,set_User_Rooms] = useState(Rooms);
+  const [Load,setLoad] = useState(0);
+  const returnLoader = ()=>{
+    if(Load){
+      return <Loading/>;
+    }
+    else{
+      return null;
+    }
+  }
   return (
     <div className="main-home-page" id="main-home-page">
+      {returnLoader()}
       <Sidebar
         user_Name={user_Name}
         user_Email={user_Email}
@@ -104,6 +116,7 @@ function Home() {
         user_Email={user_Email}
         user_Avtar={user_Avtar}
       />
+      <LoaderContext.Provider value={setLoad}>
       <Routes>
         <Route path="/register" element={<LoginSignup />} />
         <Route path="/" element={<Main />} />
@@ -126,6 +139,7 @@ function Home() {
         <Route path="/user/rooms" element={<Room user_Rooms={user_Rooms}/>}/>
         <Route path="*" element={<Main />} />
       </Routes>
+      </LoaderContext.Provider>
     </div>
   );
 }

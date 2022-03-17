@@ -16,6 +16,8 @@ app.use(express.json());
 
 
 app.use("/api/v1",require('./routes'));
+// checking for token acceptence 
+app.use("/api/private",require('./routes/private'));
 // error handler middleware 
 app.use(errorHandler);
 
