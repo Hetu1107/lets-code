@@ -1,11 +1,15 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
+import React,{useState,useContext} from "react";
+import ReturnAvtars from "../Avtars/Avtar";
+import { UserContext } from "../context/UserContext";
 import "../style/Nav.scss";
 
 let toggle = 0;
 let drop = 0;
+let Avtars = ReturnAvtars();
 function Nav(props) {
+  let profile = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png';
   const [width,setwidth] = useState(window.screen.width);
+  const {user_Name,user_Index} = useContext(UserContext);
   window.addEventListener('resize',()=>{
       setwidth(window.screen.width);
   })
@@ -83,8 +87,8 @@ function Nav(props) {
                     drop = 0;
                 }
             }}>
-              <img src={props.user_Avtar} style={{borderRadius: "50%"}}/>
-              <h4>{props.user_Name}</h4>
+              <img src={user_Index ? Avtars[user_Index].src : profile} style={{borderRadius: "50%"}}/>
+              <h4>{user_Name}</h4>
               <i class="fas fa-sort-down"></i>
             </div>
             <div className="nav-profile-drop" id="nav-profile-drop">

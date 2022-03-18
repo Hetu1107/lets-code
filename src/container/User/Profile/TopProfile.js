@@ -2,51 +2,29 @@ import axios from "axios";
 import React, { useEffect, useState,useContext } from "react";
 import ReturnAvtars from "../../Avtars/Avtar";
 import { LoaderContext } from "../../context/LoaderContext";
-import { NameContext } from "../../context/NameContext";
-import { ProfileContext } from "../../context/ProfileContext";
-import ModalCode from "../../Modals/ModalCode";
+import { UserContext } from "../../context/UserContext";
+
 const Avtars = ReturnAvtars();
 function TopProfile(props) {
 
   // loader 
   const setLoad = useContext(LoaderContext);
-  const set_User_Avtar = useContext(ProfileContext);
-  const set_User_Name = useContext(NameContext);
 
-  // states of database 
-  const [userName, setName] = useState(props.username);
-  const [userEmail, setEmail] = useState(props.email);
+  let {set_User_Index,set_User_Name,set_User_Email,user_Index,user_Name,user_Email} = useContext(UserContext);
   const [editMode, setMode] = useState(false);
-  const [imgIndex, setImgIndex] = useState(props.profileIMG);
-
   // state for updating details
-  const [changeUserName, setChangeUserName] = useState(userName);
-  const [changeEmail, setChangeEmail] = useState(userEmail);
-  const [changeImgIndex, setChangeImgIndex] = useState(imgIndex);
-  const [cahngeIMG,setChangeIMG] = useState(Avtars[changeImgIndex].src);
+  const [changeUserName, setChangeUserName] = useState();
+  const [changeEmail, setChangeEmail] = useState();
+  const [changeImgIndex, setChangeImgIndex] = useState();
+  const [cahngeIMG,setChangeIMG] = useState(Avtars[user_Index ? user_Index : 0].src);
+  useEffect(()=>{
+    setChangeUserName(user_Name);
+    setChangeEmail(user_Email);
+    setChangeImgIndex(user_Index);
+    setChangeIMG(Avtars[user_Index ? user_Index : 0].src);
+  },[user_Name,user_Index,user_Email]);
 
-  // left move photo
-  // const leftMove = () => {
-  //   if (changeImgIndex == 0) {
-  //     setChangeImgIndex(Avtars.length - 1);
-  //   } else {
-  //     setChangeImgIndex(changeImgIndex - 1);
-  //   }
-  //   console.log(changeImgIndex);
-  //   setChangeIMG(Avtars[changeImgIndex].src);
-  // };
 
-  // // right move photo
-  // const rightMove = () => {
-  //   if (changeImgIndex == Avtars.length - 1) {
-  //     setChangeImgIndex(0);
-  //   } else {
-  //     setChangeImgIndex(changeImgIndex + 1);
-  //   }
-  //   console.log(changeImgIndex);
-  //   setChangeIMG(Avtars[changeImgIndex].src);
-  //   // setImg(Avtars[inde].src);
-  // };
   useEffect(() => {
     if (editMode == false) {
       document.getElementById("left-arrow").style.display = "none";
@@ -155,10 +133,10 @@ function TopProfile(props) {
                 document.getElementById("edit-button").innerText = "Cancel";
                 setMode(true);
               } else {
-                setChangeUserName(userName);
-                setChangeEmail(userEmail);
-                setChangeImgIndex(imgIndex);
-                setChangeIMG(Avtars[imgIndex].src);
+                setChangeUserName(user_Name);
+                setChangeEmail(user_Email);
+                setChangeImgIndex(user_Index);
+                setChangeIMG(Avtars[changeImgIndex].src);
                 document.getElementById("edit-button").innerText = "Edit";
                 document.getElementById("left-arrow").style.display = "none";
                 document.getElementById("right-arrow").style.display = "none";
@@ -171,12 +149,9 @@ function TopProfile(props) {
           <button
             onClick={() => {
               updateDetails();
-              setEmail(changeEmail);
-              setImgIndex(changeImgIndex);
-              setName(changeUserName);
-              setChangeIMG(Avtars[changeImgIndex].src);
-              set_User_Avtar(cahngeIMG);
-              set_User_Name(userName);
+              set_User_Index(changeImgIndex);
+              set_User_Name(changeUserName);
+              set_User_Email(changeEmail);
               setMode(false);
               document.getElementById("edit-button").innerText = "Edit";
             }}

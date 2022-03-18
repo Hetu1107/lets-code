@@ -15,6 +15,7 @@ import Private from "../Private/Private";
 import axios from "axios";
 import { ProfileContext } from "../context/ProfileContext";
 import { NameContext } from "../context/NameContext";
+import { UserContext } from "../context/UserContext";
 let Avtars = ReturnAvtars();
 function Home() {
   const total_Users = [
@@ -95,10 +96,11 @@ function Home() {
   ];
   const [userDetails, setUserDetails] = useState(1);
   const [user_Name, set_User_Name] = useState("Login");
-  const [user_Email, set_User_Email] = useState("hetu200211@gmail.com");
+  const [user_Email, set_User_Email] = useState("Not Found");
   const [user_Avtar, set_User_Avtar] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
   );
+  const [user_Index, set_User_Index] = useState(null);
   const [user_Rooms, set_User_Rooms] = useState(Rooms);
   const [Load, setLoad] = useState(0);
   useEffect(async () => {
@@ -115,29 +117,24 @@ function Home() {
             .then((data) => {
               setUserDetails(data.user);
               set_User_Name(data.user.username);
-              set_User_Avtar(Avtars[data.user.profileIMG].src);
-              // setLoad(0);
+              set_User_Index(data.user.profileIMG);
+              set_User_Email(data.user.email);
             });
         } catch (e) {
           console.log(e);
           setLoad(0);
           // setting user to login type
           set_User_Name("Login");
-          set_User_Avtar(
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
-          );
         }
       } else {
         // setting user to login type
         set_User_Name("Login");
-        set_User_Avtar(
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
-        );
       }
     };
     await getUser();
     setLoad(0);
-  }, []);
+    return;
+  },[]);
   const returnLoader = () => {
     if (Load) {
       return <Loading />;
@@ -148,54 +145,49 @@ function Home() {
   return (
     <div className="main-home-page" id="main-home-page">
       {returnLoader()}
-      <NameContext.Provider value={set_User_Name}>
-        <ProfileContext.Provider value={set_User_Avtar}>
-          {userDetails && (
-            <Sidebar
-              user_Name={user_Name}
-              user_Email={user_Email}
-              user_Avtar={user_Avtar}
+      <UserContext.Provider
+        value={{
+          set_User_Index,
+          set_User_Name,
+          set_User_Email,
+          user_Index,
+          user_Name,
+          user_Email,
+        }}
+      >
+        <Sidebar />
+        <Nav />
+        <LoaderContext.Provider value={setLoad}>
+          <Routes>
+            <Route path="/register" element={<LoginSignup />} />
+            <Route path="/" element={<Main />} />
+            <Route
+              path="/user"
+              element={<Private component={<Profile/>}></Private>}
             />
-          )}
-          {userDetails && (
-            <Nav
-              user_Name={user_Name}
-              user_Email={user_Email}
-              user_Avtar={user_Avtar}
+            <Route
+              path="/user/friends"
+              element={
+                <Private
+                  component={
+                    <Friends
+                      user_Friends={user_Friends}
+                      total_Users={total_Users}
+                    />
+                  }
+                ></Private>
+              }
             />
-          )}
-      <LoaderContext.Provider value={setLoad}>
-        <Routes>
-          <Route path="/register" element={<LoginSignup />} />
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/user"
-            element={<Private component={<Profile />}></Private>}
-          />
-          <Route
-            path="/user/friends"
-            element={
-              <Private
-                component={
-                  <Friends
-                    user_Friends={user_Friends}
-                    total_Users={total_Users}
-                  />
-                }
-              ></Private>
-            }
-          />
-          <Route
-            path="/user/rooms"
-            element={
-              <Private component={<Room user_Rooms={user_Rooms} />}></Private>
-            }
-          />
-          <Route path="*" element={<Main />} />
-        </Routes>
-      </LoaderContext.Provider>
-      </ProfileContext.Provider>
-      </NameContext.Provider>
+            <Route
+              path="/user/rooms"
+              element={
+                <Private component={<Room user_Rooms={user_Rooms} />}></Private>
+              }
+            />
+            <Route path="*" element={<Main />} />
+          </Routes>
+        </LoaderContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }
