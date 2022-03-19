@@ -3,9 +3,10 @@ const { accept } = require('../controllers/friends/accept');
 const { reject } = require('../controllers/friends/reject');
 const { send } = require('../controllers/friends/send');
 const { remove } = require('../models/user.model');
+const {getFriends} = require('../controllers/friends/getFriends')
 const friendsRoute = express.Router();
 
-
+friendsRoute.route("/getfriends/:id").get(getFriends);
 // sending friend req api 
 friendsRoute.route("/send").put(send);
 // remove friend api 

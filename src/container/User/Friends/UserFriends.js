@@ -1,8 +1,8 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
-
+import React,{useState,useEffect} from "react";
+import ReturnAvtars from "../../Avtars/Avtar";
+let Avtars = ReturnAvtars();
 function UserFriends(props) {
-  const user_Friends = props.user_Friends;
+  const [user_Friends,set_User_Friends] =useState(props.friends);
   const [selected, setSelected] = useState(0);
   return (
     <div className="main-friends">
@@ -26,8 +26,8 @@ function UserFriends(props) {
                   }}
                 >
                   <div className="left">
-                    <img src={res.src} />
-                    <h4>{res.name}</h4>
+                    <img src={Avtars[res.profileIMG].src} />
+                    <h4>{res.username}</h4>
                   </div>
                   <div className="right">
                     <i class="fas fa-angle-right"></i>
@@ -50,8 +50,8 @@ function UserFriends(props) {
                   }}
                 >
                   <div className="left">
-                    <img src={res.src} />
-                    <h4>{res.name}</h4>
+                    <img src={Avtars[res.profileIMG].src} />
+                    <h4>{res.username}</h4>
                   </div>
                   <div className="right">
                     <i class="fas fa-angle-right"></i>
@@ -65,7 +65,7 @@ function UserFriends(props) {
       <div className="friends-common">
         <h2>Common-Rooms</h2>
         <div className="search-results select">
-          {user_Friends[selected].rooms.map((res, index) => {
+          {user_Friends.length>0 && user_Friends[selected].rooms.map((res, index) => {
             return(
             <div className="main-bot-box">
               <div className="left">

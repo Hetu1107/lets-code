@@ -1,9 +1,13 @@
-import React from "react";
-import { useState } from "react/cjs/react.development";
-
+import axios from "axios";
+import React,{useState,useEffect,useContext} from "react";
+import ReturnAvtars from "../../Avtars/Avtar";
+import { LoaderContext } from "../../context/LoaderContext";
+let Avtars = ReturnAvtars();
 function Invite(props) {
-  const total_Users = props.total_Users;
+  const [total_Users,setTotalUser] = useState(props.total_Users);
+  const sendFriendReq = ()=>{
 
+  }
   const [filter,setFilter] = useState([]);
   const return_Filters = ()=>{
     if(filter.length == 0){
@@ -21,7 +25,7 @@ function Invite(props) {
         <input type="text" onChange={(e)=>{
             const a = [];
             for(let i=0;i<total_Users.length;i++){
-              if(total_Users[i].name.includes(e.target.value.trim()) && e.target.value.trim() != ''){
+              if(total_Users[i].username.includes(e.target.value.trim()) && e.target.value.trim() != ''){
                 a.push(total_Users[i]);
               }
             }
@@ -39,11 +43,11 @@ function Invite(props) {
               return(
                 <div className="main-bot-box">
                   <div className="left">
-                    <img src={res.src}/>
-                    <h4>{res.name}</h4>
+                    <img src={Avtars[res.profileIMG || 0].src}/>
+                    <h4>{res.username}</h4>
                   </div>
                   <div className="right">
-                    <i class="fas fa-user-plus"></i>
+                    <i class="fas fa-user-plus" id="send-req"></i>
                   </div>
                 </div>
               );
