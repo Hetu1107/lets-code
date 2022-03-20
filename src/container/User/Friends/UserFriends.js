@@ -3,6 +3,7 @@ import ReturnAvtars from "../../Avtars/Avtar";
 let Avtars = ReturnAvtars();
 function UserFriends(props) {
   const [user_Friends,set_User_Friends] =useState(props.friends);
+  useEffect(()=>{},[user_Friends])
   const [selected, setSelected] = useState(0);
   return (
     <div className="main-friends">
@@ -76,7 +77,7 @@ function UserFriends(props) {
               </div>
             </div>
             );
-          })}
+          })}     
         </div>
       </div>
     </div>

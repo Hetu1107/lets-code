@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import Main from "./Main";
 import LoginSignup from "../Login-signup/LoginSignup";
 import Nav from "../Navbar/Nav";
@@ -13,55 +13,11 @@ import Loading from "../Load/Loading";
 import { LoaderContext } from "../context/LoaderContext";
 import Private from "../Private/Private";
 import axios from "axios";
-import { ProfileContext } from "../context/ProfileContext";
-import { NameContext } from "../context/NameContext";
 import { UserContext } from "../context/UserContext";
+import { ErrorContext } from "../context/ErrorContext";
 let Avtars = ReturnAvtars();
 function Home() {
-  const total_Users = [
-    {
-      name: "Hey007",
-      src: Avtars[0].src,
-    },
-    {
-      name: "Hey008",
-      src: Avtars[0].src,
-    },
-    {
-      name: "abc007",
-      src: Avtars[0].src,
-    },
-    {
-      name: "mohit007",
-      src: Avtars[0].src,
-    },
-    {
-      name: "dhruv007",
-      src: Avtars[0].src,
-    },
-  ];
-  const user_Friends = [
-    {
-      name: "Hey007",
-      src: Avtars[0].src,
-      rooms: ["Room1", "Room2", "Room3", "Room4"],
-    },
-    {
-      name: "Hey008",
-      src: Avtars[0].src,
-      rooms: ["Room1", "Room3", "Room4"],
-    },
-    {
-      name: "Hey009",
-      src: Avtars[0].src,
-      rooms: ["Room1"],
-    },
-    {
-      name: "Hey010",
-      src: Avtars[0].src,
-      rooms: ["Room1", "Room2"],
-    },
-  ];
+  const error = useContext(ErrorContext);
   const Rooms = [
     {
       id: 1234,
@@ -121,7 +77,10 @@ function Home() {
               set_User_Email(data.user.email);
             });
         } catch (e) {
-          console.log(e);
+          error(e.response.data.error);
+          setTimeout(() => {
+            error("");
+          }, 5000);
           setLoad(0);
           // setting user to login type
           set_User_Name("Login");
@@ -134,7 +93,7 @@ function Home() {
     await getUser();
     setLoad(0);
     return;
-  },[]);
+  }, []);
   const returnLoader = () => {
     if (Load) {
       return <Loading />;
@@ -163,20 +122,11 @@ function Home() {
             <Route path="/" element={<Main />} />
             <Route
               path="/user"
-              element={<Private component={<Profile/>}></Private>}
+              element={<Private component={<Profile />}></Private>}
             />
             <Route
               path="/user/friends"
-              element={
-                <Private
-                  component={
-                    <Friends
-                      user_Friends={user_Friends}
-                      total_Users={total_Users}
-                    />
-                  }
-                ></Private>
-              }
+              element={<Private component={<Friends />}></Private>}
             />
             <Route
               path="/user/rooms"

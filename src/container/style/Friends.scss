@@ -124,6 +124,12 @@
                     &:hover{
                         opacity: 0.7;
                     }
+                    &.fa-check-square{
+                        color: $dark-green;
+                    }
+                    &.fa-hourglass-half{
+                        color: $purple;
+                    }
                 }
             }
         }

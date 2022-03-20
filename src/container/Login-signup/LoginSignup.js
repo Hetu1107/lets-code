@@ -3,8 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { LoaderContext } from "../context/LoaderContext";
 import "../style/Register.scss";
+import { ErrorContext } from "../context/ErrorContext";
 
 function LoginSignup() {
+  const error = useContext(ErrorContext);
   const setLoad = useContext(LoaderContext);
   const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
@@ -33,15 +35,18 @@ function LoginSignup() {
       let password = registerPassword;
       const { data } = await axios.post(
         "/api/v1/user/register",
-        {username, email, password },
+        { username, email, password },
         config
       );
       localStorage.setItem("authToken-VNote", data.token);
       navigate("/user");
       setLoad(0);
     } catch (e) {
+      error(e.response.data.error);
+      setTimeout(() => {
+        error("");
+      }, 5000);
       setLoad(0);
-      console.log(e);
     }
     setLoad(0);
   };
@@ -63,12 +68,17 @@ function LoginSignup() {
         { email, password },
         config
       );
-      localStorage.setItem("authToken-VNote", data.token);
-      navigate("/user");
-      setLoad(0);
+      if (data) {
+        localStorage.setItem("authToken-VNote", data.token);
+        navigate("/user");
+        setLoad(0);
+      }
     } catch (e) {
+      error(e.response.data.error);
+      setTimeout(() => {
+        error("");
+      }, 5000);
       setLoad(0);
-      console.log(e);
     }
     setLoad(0);
   };
@@ -95,11 +105,23 @@ function LoginSignup() {
               <label class="form-input-label">Username</label>
             </div>
             <div class="form-input">
-              <input type="text" value={registerEmail} onChange={(e)=>setRegisterEmail(e.target.value)} class="form-input-text" required />
+              <input
+                type="text"
+                value={registerEmail}
+                onChange={(e) => setRegisterEmail(e.target.value)}
+                class="form-input-text"
+                required
+              />
               <label class="form-input-label">Email</label>
             </div>
             <div class="form-input">
-              <input type="password" value={registerPassword} onChange={(e)=>setRegisterPassword(e.target.value)} class="form-input-text" required />
+              <input
+                type="password"
+                value={registerPassword}
+                onChange={(e) => setRegisterPassword(e.target.value)}
+                class="form-input-text"
+                required
+              />
               <label class="form-input-label">Password</label>
             </div>
             <button class="form-btn">Submit</button>

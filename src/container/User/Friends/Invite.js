@@ -1,10 +1,16 @@
 import axios from "axios";
 import React,{useState,useEffect,useContext} from "react";
 import ReturnAvtars from "../../Avtars/Avtar";
+import { ErrorContext } from "../../context/ErrorContext";
 import { LoaderContext } from "../../context/LoaderContext";
 let Avtars = ReturnAvtars();
 function Invite(props) {
+  const setLoad = useContext(LoaderContext);
+  const error = useContext(ErrorContext);
   const [total_Users,setTotalUser] = useState(props.total_Users);
+  const [friends,setFriends] = useState(props.friends);
+  const [sended,setSended] = useState(props.sended);
+  useEffect(()=>{},[total_Users]);
   const sendFriendReq = ()=>{
 
   }
@@ -16,6 +22,53 @@ function Invite(props) {
         <h3>Nothing is here..</h3>
       </div>
       );
+    }
+  }
+  const sendRequest = async (id)=>{
+    setLoad(1);
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try{
+      let id1 = id;
+      let id2 = localStorage.getItem("id");
+      await axios.put("/api/v1/friends/send",{id1,id2},config);
+      setLoad(0);
+      error("request successfully sended");
+      setTimeout(()=>{
+        error("");
+      },5000);
+      document.getElementById(id1).classList.remove("fa-user-plus");
+      document.getElementById(id1).classList.add("fa-hourglass-half");
+    }catch(e){
+      error(e.response.data.error);
+      setTimeout(()=>{
+        error("");
+      },5000);
+      setLoad(0);
+    }
+  }
+  const checkingFlag = (e,index_id)=>{
+    if(e==2){
+      return <i class="fas fa-hourglass-half" onClick={()=>{
+        error("already sended request");
+        setTimeout(()=>{
+          error("");
+        },5000)
+      }}></i>
+    }
+    else if(e==1){
+      return <i class="fas fa-check-square" onClick={()=>{
+        error("already your friend");
+        setTimeout(()=>{
+          error("");
+        },5000)
+      }}></i>
+    }
+    else{
+      return <i className="fas fa-user-plus" id={index_id} onClick={(e)=>sendRequest(index_id)}></i>
     }
   }
   return (
@@ -40,6 +93,19 @@ function Invite(props) {
           }
           {
             filter.map((res,index)=>{
+              let flag = 0;
+              {friends.forEach(re => {
+                  if(res._id === re._id){
+                    flag = 1;
+                  }
+              })}  
+              if(flag!=1){
+                sended.forEach(re=>{
+                  if(re === res._id){
+                    flag = 2;
+                  }
+                });           
+              }
               return(
                 <div className="main-bot-box">
                   <div className="left">
@@ -47,7 +113,9 @@ function Invite(props) {
                     <h4>{res.username}</h4>
                   </div>
                   <div className="right">
-                    <i class="fas fa-user-plus" id="send-req"></i>
+                    {
+                      checkingFlag(flag,res._id)
+                    }
                   </div>
                 </div>
               );
