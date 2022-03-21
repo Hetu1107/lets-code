@@ -33,14 +33,16 @@ function LoginSignup() {
       let username = registerUsername;
       let email = registerEmail;
       let password = registerPassword;
-      const { data } = await axios.post(
+      await axios.post(
         "/api/v1/user/register",
         { username, email, password },
         config
-      );
-      localStorage.setItem("authToken-VNote", data.token);
-      navigate("/user");
-      setLoad(0);
+      ).then((d)=>{
+        return localStorage.setItem("authToken-VNote", d.data.token);
+      }).then(()=>{
+        navigate("/user");
+        setLoad(0);
+      })
     } catch (e) {
       error(e.response.data.error);
       setTimeout(() => {
@@ -63,18 +65,19 @@ function LoginSignup() {
     try {
       let email = loginEmail;
       let password = loginPassword;
-      const { data } = await axios.post(
+      await axios.post(
         "/api/v1/user/login",
         { email, password },
         config
-      );
-      if (data) {
-        localStorage.setItem("authToken-VNote", data.token);
+      ).then((d)=>{
+        return localStorage.setItem("authToken-VNote", d.data.token);
+      }).then(()=>{
         navigate("/user");
         setLoad(0);
-      }
+      })
     } catch (e) {
-      error(e.response.data.error);
+      console.log(e);
+      // error(e);
       setTimeout(() => {
         error("");
       }, 5000);

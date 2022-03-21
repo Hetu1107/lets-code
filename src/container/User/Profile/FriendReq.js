@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState,useContext } from "react";
+import ReturnAvtars from "../../Avtars/Avtar";
+import { ErrorContext } from "../../context/ErrorContext";
+import { LoaderContext } from "../../context/LoaderContext";
 const friend_requests = [
   {
     name: "Hetu",
@@ -13,8 +17,18 @@ const friend_requests = [
       "https://mymobotips.com/wp-content/uploads/2016/05/Make-Your-Own-Avatar_thumb.jpg",
   },
 ];
-function FriendReq() {
-  const [requests, setRequests] = useState(friend_requests);
+
+// avtars 
+const Avtars = ReturnAvtars();
+/* main component fxn */
+function FriendReq(props) {
+  // getting loader context 
+  const setLoad = useContext(LoaderContext);
+  // getting error context 
+  const error = useContext(ErrorContext);
+
+  // recieved requests
+  const [requests, setRequests] = useState(props.recieved);
   const [removed, setRemoved] = useState(0);
 
   function emptyOrNot() {
@@ -24,6 +38,33 @@ function FriendReq() {
           <h3>Nothing is here..</h3>
         </div>
       );
+    }
+  }
+  const acceptRequest = async (id,index)=>{
+    setLoad(1);
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try{
+      let id1 = localStorage.getItem("id");
+      let id2 = id;
+      await axios.put("/api/v1/friends/accept",{id1,id2},config);
+      setLoad(0);
+      error("successfully added to friends");
+      setTimeout(()=>{
+        error("");
+      },5000);
+      let a = [...requests];
+      a.splice(index, 1);
+      setRequests(a);
+    }catch(e){
+      error(e);
+      setLoad(0);
+      setTimeout(()=>{
+        error("");
+      },5000);
     }
   }
   return (
@@ -37,20 +78,23 @@ function FriendReq() {
           return (
             <div className="main-bot-box" id={`main-bot-box-${index}`}>
               <div className="left">
-                <img src={res.avtar} />
-                <h4>{res.name}</h4>
+                <img src={Avtars[res.profileIMG || 0].src} />
+                <h4>{res.username}</h4>
               </div>
               <div className="right">
-                <i class="fas fa-user-plus"></i>
+                <i class="fas fa-user-plus" onClick={()=>acceptRequest(res._id,index)}></i>
                 <i
                   class="fas fa-trash-alt"
                   id={index}
+
                   onClick={(e) => {
                     let a = requests;
                     a.splice(index - removed, 1);
                     setRemoved(removed + 1);
                     setRequests(a);
+
                   }}
+                  // onClick={()=>acceptRequest(res._id,index)}
                 ></i>
               </div>
             </div>

@@ -42,6 +42,7 @@ function Friends(props) {
             return res.data;
           })
           .then((data) => {
+            setLoad(0);
             set_Sended(data.sended);
             set_Friends(data.friends);
             set_User_Rooms(data.user_rooms);
@@ -53,9 +54,9 @@ function Friends(props) {
         }, 5000);
       }
     };
-    await getFriends();
     await getUsers();
-    setLoad(0);
+    await getFriends();
+    // setLoad(0);
   }, []);
   return (
     <div className="main-friend-page">

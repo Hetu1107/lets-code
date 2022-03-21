@@ -14,7 +14,7 @@ function Invite(props) {
   const sendFriendReq = ()=>{
 
   }
-  const [filter,setFilter] = useState([]);
+  const [filter,setFilter] = useState(total_Users);
   const return_Filters = ()=>{
     if(filter.length == 0){
       return(
@@ -42,6 +42,7 @@ function Invite(props) {
       },5000);
       document.getElementById(id1).classList.remove("fa-user-plus");
       document.getElementById(id1).classList.add("fa-hourglass-half");
+      document.getElementById(id).removeAttribute('id');
     }catch(e){
       error(e.response.data.error);
       setTimeout(()=>{
