@@ -30,9 +30,9 @@ function BottomProfile() {
       console.log(recieved)
     }catch(e){
       error(e.response.data.error);
+      setLoad(0);
       setTimeout(()=>{
         error("");
-        setLoad(0);
       },5000)
     }
   },[user_Name]);

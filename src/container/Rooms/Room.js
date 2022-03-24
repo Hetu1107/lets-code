@@ -12,9 +12,9 @@ function Room(props) {
     return (
         <div className='main-rooms-page'>
             {
-                user_Rooms.map((res)=>{
+                user_Rooms.map((res,index)=>{
                     return(
-                    <RoomCard data={res}/>
+                    <RoomCard data={res} index={index}/>
                     );
                 })
             }

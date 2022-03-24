@@ -16,6 +16,7 @@ function UserFriends(props) {
                 <div
                   className="main-bot-box active"
                   id={`main-bot-box-${index}`}
+                  key={`user-friend-${index}`}
                   onClick={() => {
                     document
                       .getElementById(`main-bot-box-${selected}`)

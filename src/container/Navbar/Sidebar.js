@@ -51,12 +51,13 @@ function Sidebar(props) {
           </div>
         </div>
       </Link>
-      {sidebarLi.map((res) => {
+      {sidebarLi.map((res,index) => {
         return (
           <Link to={res.to}>
             <div
               className="sidebar-li"
               id={res.name}
+              key={`sidebar-item-${index}`}
               onClick={() => {
                 document.getElementById(active).classList.remove("active");
                 document.getElementById(res.name).classList.add("active");

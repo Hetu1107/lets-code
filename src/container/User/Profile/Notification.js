@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState,useContext } from "react";
+import { ErrorContext } from "../../context/ErrorContext";
+import { LoaderContext } from "../../context/LoaderContext";
 const Notifications = [
   {
     text: "Hey Hetu How are you",
   },
 ];
-function Notification() {
+function Notification(props) {
+  let setLoad = useContext(LoaderContext);
+  let error = useContext(ErrorContext);
   const [removedNoti, setRemovedNoti] = useState(0);
-  const [Notifi, setNotifi] = useState(Notifications);
+  const [Notifi, setNotifi] = useState(props.notifications);
   function emptyOrNotNoti() {
     if (Notifi.length == 0) {
       return (
@@ -14,6 +19,31 @@ function Notification() {
           <h3>Nothing is here..</h3>
         </div>
       );
+    }
+  }
+  const removeNotification = async (index,inde)=>{
+    setLoad(1);
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try{
+      await axios.put(`/api/v1/user/notification/remove/${index}`);
+      let a = [...Notifi];
+      a.splice(inde,1);
+      setNotifi(a);
+      error("notification removed");
+      setTimeout(()=>{
+        error("");
+      },5000)
+      setLoad(0);
+    }catch(e){
+      error(e);
+      setLoad(0);
+      setTimeout(()=>{
+        error("");
+      },5000);
     }
   }
   return (
@@ -25,19 +55,14 @@ function Notification() {
         {emptyOrNotNoti()}
         {Notifi.map((res, index) => {
           return (
-            <div className="main-bot-box">
+            <div className="main-bot-box" key={`notification-${index}`}>
               <div className="left noti">
-                <h4>{res.text}</h4>
+                <h4>{res.value}</h4>
               </div>
               <div className="right not">
                 <i
                   class="fas fa-times"
-                  onClick={(e) => {
-                    let a = Notifi;
-                    a.splice(index - removedNoti, 1);
-                    setRemovedNoti(removedNoti + 1);
-                    setNotifi(a);
-                  }}
+                  onClick={()=>removeNotification(res.index,index)}
                 ></i>
               </div>
             </div>

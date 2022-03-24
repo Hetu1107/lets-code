@@ -1,30 +1,16 @@
 import axios from "axios";
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import ReturnAvtars from "../../Avtars/Avtar";
 import { ErrorContext } from "../../context/ErrorContext";
 import { LoaderContext } from "../../context/LoaderContext";
-const friend_requests = [
-  {
-    name: "Hetu",
-    id: 0,
-    avtar:
-      "https://mymobotips.com/wp-content/uploads/2016/05/Make-Your-Own-Avatar_thumb.jpg",
-  },
-  {
-    name: "Priya",
-    id: 1,
-    avtar:
-      "https://mymobotips.com/wp-content/uploads/2016/05/Make-Your-Own-Avatar_thumb.jpg",
-  },
-];
 
-// avtars 
+// avtars
 const Avtars = ReturnAvtars();
 /* main component fxn */
 function FriendReq(props) {
-  // getting loader context 
+  // getting loader context
   const setLoad = useContext(LoaderContext);
-  // getting error context 
+  // getting error context
   const error = useContext(ErrorContext);
 
   // recieved requests
@@ -40,33 +26,61 @@ function FriendReq(props) {
       );
     }
   }
-  const acceptRequest = async (id,index)=>{
+  const acceptRequest = async (id, index) => {
     setLoad(1);
     const config = {
       header: {
         "Content-Type": "application/json",
       },
     };
-    try{
+    try {
       let id1 = localStorage.getItem("id");
       let id2 = id;
-      await axios.put("/api/v1/friends/accept",{id1,id2},config);
+      await axios.put("/api/v1/friends/accept", { id1, id2 }, config);
       setLoad(0);
       error("successfully added to friends");
-      setTimeout(()=>{
+      setTimeout(() => {
         error("");
-      },5000);
+      }, 5000);
       let a = [...requests];
       a.splice(index, 1);
       setRequests(a);
-    }catch(e){
+    } catch (e) {
       error(e);
       setLoad(0);
-      setTimeout(()=>{
+      setTimeout(() => {
         error("");
-      },5000);
+      }, 5000);
     }
-  }
+  };
+  const removeRequest = async (id, index) => {
+    setLoad(1);
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      let id1 = localStorage.getItem("id");
+      let id2 = id;
+      await axios.put("/api/v1/friends/reject", { id1, id2 }, config);
+      await axios.put(`/api/v1/user/notification/add/${id2}`,{value :  `new friend added` },config);
+      setLoad(0);
+      error("removed from friend requests");
+      setTimeout(() => {
+        error("");
+      }, 5000);
+      let a = [...requests];
+      a.splice(index, 1);
+      setRequests(a);
+    } catch (e) {
+      error(e);
+      setLoad(0);
+      setTimeout(() => {
+        error("");
+      }, 5000);
+    }
+  };
   return (
     <div className="main-profile-left">
       <div className="main-profile-head">
@@ -76,25 +90,20 @@ function FriendReq(props) {
         {emptyOrNot()}
         {requests.map((res, index) => {
           return (
-            <div className="main-bot-box" id={`main-bot-box-${index}`}>
+            <div className="main-bot-box" id={`main-bot-box-${index}`} key={`requests-${index}`}>
               <div className="left">
                 <img src={Avtars[res.profileIMG || 0].src} />
                 <h4>{res.username}</h4>
               </div>
               <div className="right">
-                <i class="fas fa-user-plus" onClick={()=>acceptRequest(res._id,index)}></i>
+                <i
+                  class="fas fa-user-plus"
+                  onClick={() => acceptRequest(res._id, index)}
+                ></i>
                 <i
                   class="fas fa-trash-alt"
-                  id={index}
-
-                  onClick={(e) => {
-                    let a = requests;
-                    a.splice(index - removed, 1);
-                    setRemoved(removed + 1);
-                    setRequests(a);
-
-                  }}
-                  // onClick={()=>acceptRequest(res._id,index)}
+                  id={`remove-${index}`}
+                  onClick={() => removeRequest(res._id, index)}
                 ></i>
               </div>
             </div>

@@ -128,7 +128,7 @@
         padding: 5px 0;
     }
     .form-input-label {
-        color: $color;
+        color: $text;
         position: absolute;
         top: 15px;
         transition: all 200ms ease;
@@ -140,11 +140,12 @@
         border: 0;
         z-index: 1;
         background-color: transparent;
-        border-bottom: 2px solid $text-muted;
+        border-bottom: 2px solid $text;
         color: $color;
         font: inherit;
-        font-size: 18px;
-        font-family: 'DM Sans', sans-serif;
+        font-size: 16px;
+        font-family: $poppins;
+        font-weight: 300;
         padding: 5px 0;
         &:focus,
         &:valid {
