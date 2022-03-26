@@ -1,0 +1,24 @@
+@import "variable";
+.main-editor-code{
+    width: 100%;
+    min-height: calc(100vh - 110px);
+    max-height: calc(100vh - 110px);
+    overflow: scroll;
+}
+.main-editor-code .ql-toolbar{
+    display: none;
+}
+.main-editor-code .ql-container{
+    background-color: $card;
+    width: 100%;
+    border: none;
+}
+.main-editor-code .ql-editor{
+    color: $color;
+    min-height: calc(100vh - 110px);
+    max-height: fit-content;
+    font-size: 16px;
+    font-family: $rubik;
+    font-weight: 300;
+    // background-color: aqua;
+}

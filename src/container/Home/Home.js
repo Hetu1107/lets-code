@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Main from "./Main";
 import LoginSignup from "../Login-signup/LoginSignup";
 import Nav from "../Navbar/Nav";
@@ -15,6 +15,7 @@ import Private from "../Private/Private";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { ErrorContext } from "../context/ErrorContext";
+import Editor from "../Editor/Editor";
 let Avtars = ReturnAvtars();
 function Home() {
   const error = useContext(ErrorContext);
@@ -134,6 +135,7 @@ function Home() {
                 <Private component={<Room user_Rooms={user_Rooms} />}></Private>
               }
             />
+            <Route path="/user/rooms/:id" element={<Editor />} />
             <Route path="*" element={<Main />} />
           </Routes>
         </LoaderContext.Provider>

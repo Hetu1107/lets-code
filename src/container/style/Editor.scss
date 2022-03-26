@@ -1,0 +1,264 @@
+@import "variable";
+
+.main-editor-screen{
+    width: 100%;
+    min-height: 100vh;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.left-editor{
+    min-width: 80%;
+    max-width: 80%;
+    background-color: $card;
+    border: $border-box;
+    margin-top: 60px;
+    margin-left: 5px;
+    height: calc(100vh - 70px);
+    margin-bottom: 10px;
+    .top{
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: $background;
+        margin: 0;
+        padding: 0;
+        div{
+            width: fit-content;
+            padding:0 15px;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: $li;
+            h3{
+                font-family: $rubik;
+                color: $li-color;
+                font-weight: 300;
+                margin: 0;
+                padding: 0;
+                top: 0;
+                left: 0;
+            }
+            span{
+                color: $error;
+                margin-left: 5px;
+                padding: 0;
+                top: 0;
+                left: 0;
+                font-size: 20px;
+                cursor: pointer;
+                transition: all 200ms ease;
+                &:hover{
+                    color: $purple;
+                }
+            }
+        }
+    }
+}
+.right-editor{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    height: calc(100vh - 70px);
+    margin-bottom: 10px;
+    background-color: $li;
+    overflow-y: scroll;
+    .top{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 5px 0;
+        background-color: $background;
+        div{
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 200ms ease;
+            border-bottom: 1px solid transparent;
+            i{
+                color: $li-color;
+                transition: all 200ms ease;
+            }
+            &:hover,&.active-editor{
+                border-bottom: 1px solid $color;
+                i{
+                    color: $color;
+                }
+            }
+        }
+    }
+}
+.right-container-editor{
+    width: 100%;
+    height: fit-content;
+    max-height: 70vh;
+    overflow: scroll;
+    background-color: $li;
+    div{
+        // &:nth-child(1){
+        //     margin-top: 10px;
+        // }
+        width: 100%;
+        height: fit-content;
+        padding: 3px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-overflow: ellipsis;
+        background-color: transparent;
+        cursor: pointer;
+        &:hover,&.selected-file{
+            background-color: $cardlow;
+        }
+        .img{
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: fit-content;
+            margin: 0;
+                padding: 0;
+            img{
+                margin: 0;
+                padding: 0;
+                height: 16px;
+                width: 16px;
+            }
+        }
+        .name{
+            width: 70%;
+            height: fit-content;
+            display: flex;
+            justify-content: flex-start;
+            h4{
+                margin: 0;
+                padding: 0;
+                color: $li-color;
+                font-family: $poppins;
+                font-weight: 300;
+                font-size: 14px;
+            }
+        }
+        &.friend{
+            padding: 5px 0;
+            position: relative;
+            .img{
+                img{
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                }
+                position: relative;
+            }
+            .name{
+                width: 60%;
+                h4{
+                    font-size: 16px;
+                }
+            }
+            .remove{
+                width: 10%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                i{
+                    font-size: 10px;
+                    color: $purple;
+                    transition: all 200ms ease;
+                    &:hover{
+                        color: $error;
+                    }
+                }
+                &.add{
+                    i{
+                        color: $green;
+                        &:hover{
+                            color: $purple;
+                        }
+                    }
+                }
+            }
+            span{
+                position: absolute;
+                right: 37%;
+                bottom: 0;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                &.online{
+                    background-color: $green;
+                }
+                &.offline{
+                    background-color: $error;
+                }
+            }
+        }
+    }
+    &.run{
+        div{
+            cursor: unset;
+            flex-direction: column;
+            &:nth-child(1){
+                justify-content: flex-end;
+                align-items: flex-end;
+                margin-top: 10px;
+            }
+            &:hover{
+                background-color: transparent;
+            }
+            button{
+                width: fit-content;
+                height: fit-content;
+                padding: 5px 10px;
+                outline: none;
+                border: none;
+                margin-right: 5px;
+                background-color: $green;
+                color: $color;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: all 200ms ease;
+                &:hover{
+                    background-color: $error;
+                }
+            }
+            h4{
+                margin: 0;
+                padding: 0;
+                font-family: $poppins;
+                color: $li-color;
+                margin: 3px 0;
+                font-size: 14px;
+                font-weight: 300;
+            }
+            textarea{
+                min-width: 90%;
+                max-width: 90%;
+                border: none;
+                outline: none;
+                border-radius: 3px;
+                background-color: $cardlow;
+                color: $text;
+                font-family: $rubik;
+                font-weight: 200;
+                font-size: 14px;
+                resize: vertical;
+            }
+        }
+    }
+}
