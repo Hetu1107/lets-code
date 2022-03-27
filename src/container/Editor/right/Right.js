@@ -4,12 +4,12 @@ import Files from "./Files";
 import FriendsEditor from "./FriendsEditor";
 import Run from "./Run";
 
-function RightEditor() {
+function RightEditor(props) {
   const [select, setSelect] = useState(1);
   const [id, setId] = useState("files");
   const selected = () => {
     if (select == 1) {
-      return <Files/>
+      return <Files files={props.files} setFiles={props.setFiles} setSelectedFile={props.setSelectedFile}/>
     } else if (select == 2) {
       return <Run/>
     } else if(select == 3) {

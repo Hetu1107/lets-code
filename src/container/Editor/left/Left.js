@@ -4,22 +4,22 @@ import Quill from "quill";
 // editor styles
 import "quill/dist/quill.snow.css";
 import "../../style/CodeEditor.scss";
-function LeftEditor() {
+function LeftEditor(props) {
   const [quill, setQuill] = useState();
+  const [text,setText] = useState("");
+  // useEffect for change in quill editor text 
   useEffect(() => {
     if (quill == null) return;
-    quill.insertText(1,'\n');
-    quill.insertText(4,'\n');
-    quill.insertText(3,'  \n');
-    quill.insertText(6,'}\n');
-    quill.insertText(5,"return 0;");
-    quill.insertText(2,"int main(){\n");
-    quill.insertText(0,'#include<bits/stdc++.h>\n')
+    setText(props.selectedFile.text);
+    quill.setText(props.selectedFile.text);
     quill.on("text-change", (delta, oldDelta, source) => {
       if (source !== "user") return;
-      console.log(quill.getText())
+      console.log(quill.getText());
     });
   }, [quill]);
+
+
+  // editor ref to a div with the id : code-editor 
   const editorRef = useCallback((editor) => {
     if (editor == null) return;
     editor.innerHTML = "";
@@ -27,18 +27,32 @@ function LeftEditor() {
     editor.append(codeEditor);
     let q = new Quill(codeEditor, { theme: "snow" });
     setQuill(q);
-  },[]);
-  return (
-    <div className="left-editor">
-      <div className="top">
-        <div>
-          <h3>Hetu.cpp</h3>
-          <span>&times;</span>
-        </div>
-      </div>
-      <div id="code-editor" className="main-editor-code" ref={editorRef}></div>
-    </div>
-  );
+  }, []);
+
+
+  // check selected file if its null or not 
+  const checkSelectedFile = () => {
+    if (props.selectedFile == null) {
+      return <div className="no-file-selected"><h2>No file Selected...</h2></div>;
+    } else {
+      return (
+        <>
+          <div className="top">
+            <div>
+              <h3>{`${props.selectedFile.name}.cpp`}</h3>
+              <span onClick={()=>props.setSelectedFile(null)}>&times;</span>
+            </div>
+          </div>
+          <div
+            id="code-editor"
+            className="main-editor-code"
+            ref={editorRef}
+          ></div>
+        </>
+      );
+    }
+  };
+  return <div className="left-editor">{checkSelectedFile()}</div>;
 }
 
 export default LeftEditor;

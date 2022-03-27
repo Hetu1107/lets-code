@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from "react";
 import cpp from "../../../assets/images/c.png";
 import cpp2 from "../../../assets/svg/cpp.svg";
-function Files() {
+function Files(props) {
   const [id, setId] = useState("");
-  const files = [
-    {
-      name: "hetu",
-    },
-    {
-      name: "hey",
-    },
-    {
-      name: "heyBeta",
-    },
-  ];
+  const [files,setFiles] = useState(props.files);
   return (
     <div className="right-container-editor">
       {files.map((res, index) => {
@@ -28,6 +18,7 @@ function Files() {
                 .getElementById(`file-${index}`)
                 .classList.add("selected-file");
               setId(`file-${index}`);
+              props.setSelectedFile(res)
             }}
           >
             <div className="img">
