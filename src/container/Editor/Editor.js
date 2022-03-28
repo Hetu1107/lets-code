@@ -9,10 +9,12 @@ function Editor() {
   let defaultText = "#include<iostream>\nusing namespace std;\n\nint main(){\n\nreturn 0;\n}"
   let user_files = [
     {
+        _id : "123456xyz",
         name : "Hetu",
         text : defaultText
     },
     {
+      _id : "12345",
       name : "Het",
       text : defaultText
     }

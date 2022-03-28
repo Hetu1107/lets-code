@@ -5,9 +5,9 @@ const fileSchema = new mongoose.Schema({
         type : String,
         required : [true,"please provide filename"]
     },
-    data : {
+    text : {
         type : Object
-    }
+    },
 })
 const file = mongoose.model("files",fileSchema);
 module.exports = fileSchema;

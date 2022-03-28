@@ -1,6 +1,5 @@
 // configure dont env keys 
 require('dotenv').config({path : "./config.env"});
-
 const express = require('express');
 const connectDB = require('./config/db');
 // connection with the database 
@@ -33,7 +32,24 @@ const server = app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
 });
 
+const io = require('socket.io')(server,{
+    cors:{
+        methods : ["GET","POST"]
+    }
+});
+io.on("connection",socket=>{
+    socket.on('get-document',documentID =>{
+        const data = ""
+        socket.join(documentID);
+        socket.emit("load-document",data);
 
+        socket.on('send-changes',delta=>{
+            // console.log(delta);
+            socket.broadcast.to(documentID).emit('recieved-changes',delta);
+        })
+    })
+    // console.log("Hey i am listening");
+})
 
 // catching the uncout error and closing the server 
 process.on("unhandledRejection",(error,promise)=>{
