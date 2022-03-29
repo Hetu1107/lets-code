@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const fileSchema = new mongoose.Schema({
     filename : {
         type : String,
+        unique : true,
         required : [true,"please provide filename"]
     },
     text : {

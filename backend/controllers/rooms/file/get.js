@@ -2,7 +2,7 @@ const File = require('../../../models/file.model');
 const Room = require('../../../models/room.model');
 const User = require('../../../models/user.model');
 exports.getAllFiles = async (req,res,next)=>{
-    const id = req.params.id;
+    const id = req.params.id; // room id
     try{
         const room = await Room.findById(id);
         const files = await room.files;

@@ -1,4 +1,5 @@
 const express = require('express');
+const { addFile } = require('../controllers/rooms/file/add');
 const { getAllFiles } = require('../controllers/rooms/file/get');
 // controllers for rooms
 const { addPeople } = require('../controllers/rooms/room/addPeople');
@@ -20,6 +21,6 @@ roomRouter.route("/removepeople/:id").put(access,removePeople); // remove user f
 
 // for files 
 roomRouter.route("/room/:id").get(getAllFiles); // here id is id of room 
+roomRouter.route("/room/create/:id").post(addFile); // here id is the id of room
 // roomRouter.route("/room/getfile/:id").get(); // here id is the id of file
-// roomRouter.route("/room/create/:id").post(); // here id is the id of room
 module.exports = roomRouter

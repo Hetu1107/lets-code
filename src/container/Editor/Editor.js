@@ -1,34 +1,58 @@
-import React,{useState,useEffect} from 'react';
-import LeftEditor from './left/Left';
-import RightEditor from './right/Right';
+import React, { useState, useEffect, useContext } from "react";
+import LeftEditor from "./left/Left";
+import RightEditor from "./right/Right";
 
-// importing style 
-import '../style/Editor.scss';
+// importing style
+import "../style/Editor.scss";
+import { LoaderContext } from "../context/LoaderContext";
+import { ErrorContext } from "../context/ErrorContext";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Editor() {
-  let defaultText = "#include<iostream>\nusing namespace std;\n\nint main(){\n\nreturn 0;\n}"
-  let user_files = [
-    {
-        _id : "123456xyz",
-        name : "Hetu",
-        text : defaultText
-    },
-    {
-      _id : "12345",
-      name : "Het",
-      text : defaultText
-    }
-  ]
-  const [files,setFiles] = useState(user_files);
-  const [people,setPeople] = useState();
-  const [friends,setFriends] = useState();
-  const [selectedFile,setSelectedFile] = useState(null);
+  const { id } = useParams();
+  // getting contexts
+  const setLoad = useContext(LoaderContext);
+  const error = useContext(ErrorContext);
+
+  const [files, setFiles] = useState([]);
+  const [people, setPeople] = useState();
+  const [friends, setFriends] = useState();
+  const [selectedFile, setSelectedFile] = useState(null);
+  useEffect(() => {
+    setLoad(1);
+    const getFiles = async () => {
+      try {
+        await axios.get(`/api/v1/rooms/room/${id}`).then((res) => {
+          setPeople(res.data.people);
+          setFiles(res.data.filesData);
+          setLoad(0);
+        });
+      } catch (e) {
+        error(e.response.data.error);
+        setTimeout(() => {
+          error("");
+        }, []);
+        setLoad(0);
+      }
+    };
+    getFiles();
+  }, []);
   return (
-    <div className='main-editor-screen'>
-        <LeftEditor selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
-        <RightEditor setSelectedFile={setSelectedFile} files={files} setFiles={setFiles}/>
+    <div className="main-editor-screen">
+      <LeftEditor
+        selectedFile={selectedFile}
+        setSelectedFile={setSelectedFile}
+        roomID={id}
+      />
+      <RightEditor
+        setSelectedFile={setSelectedFile}
+        files={files}
+        setFiles={setFiles}
+        roomID={id}
+      />
     </div>
-  )
+  );
 }
 
-export default Editor
+export default Editor;
