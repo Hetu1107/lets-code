@@ -27,30 +27,37 @@ app.use(errorHandler);
 
 
 
-
+const File = require('./models/file.model');
+async function findFile(id){
+    if(id==null) return;
+    const file = await File.findById(id);
+    return file;
+}
 const server = app.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
 });
 
 const io = require('socket.io')(server,{
     cors:{
+        origin : "*",
         methods : ["GET","POST"]
     }
 });
 io.on("connection",socket=>{
-    socket.on('get-document',documentID =>{
-        const data = ""
-        socket.join(documentID);
-        socket.emit("load-document",data);
+    socket.on('get-document',async fileID => {
+        const file = await findFile(fileID);
+        socket.join(fileID);
+        socket.emit("load-document",file.text);
 
         socket.on('send-changes',delta=>{
-            // console.log(delta);
-            socket.broadcast.to(documentID).emit('recieved-changes',delta);
+            socket.broadcast.to(fileID).emit('recieved-changes',delta);
+        })
+        socket.on('save-document',async (data)=>{
+            await File.findByIdAndUpdate(fileID,{text : data});
         })
     })
     // console.log("Hey i am listening");
-})
-
+});
 // catching the uncout error and closing the server 
 process.on("unhandledRejection",(error,promise)=>{
     console.log(error.message);

@@ -10,7 +10,7 @@ function LeftEditor(props) {
   const [text, setText] = useState("");
   useEffect(() => {
     if (props == null) return;
-    const s = io("http://localhost:5000/");
+    const s = io("/");
     setSocket(s);
     return () => {
       s.disconnect();
@@ -21,13 +21,26 @@ function LeftEditor(props) {
   useEffect(() => {
     if (socket == null || quill == null || props == null) return;
     if (props.selectedFile == null) return;
-    socket.once("load-document", (documents) => {
-      quill.setText(documents);
+    socket.once("load-document", (text) => {
+      console.log(text);
+      quill.setText(text);
       quill.enable();
     });
     socket.emit("get-document", props.selectedFile._id);
   }, [socket, quill, props]);
 
+  // updating the file 
+  useEffect(()=>{
+    if (socket == null || quill == null || props == null) return;
+    if (props.selectedFile == null) return;
+    const interval = setInterval(()=>{
+      socket.emit('save-document',quill.getText());
+    },1000)
+
+    return ()=>{
+      clearInterval(interval);
+    }
+  },[socket,quill,props])
   // recieved changes
   useEffect(() => {
     if (quill == null || socket == null || props == null) return;
@@ -63,7 +76,7 @@ function LeftEditor(props) {
     q.disable();
     q.setText("Loading...");
     setQuill(q);
-  }, []);
+  }, [props]);
 
   // check selected file if its null or not
   const checkSelectedFile = () => {
