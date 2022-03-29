@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import ReturnAvtars from "../../Avtars/Avtar";
 let Avtars = ReturnAvtars();
 function UserFriends(props) {
-  const [user_Friends,set_User_Friends] =useState(props.friends);
+  const [user_Friends,set_User_Friends] = useState(props.friends);
   useEffect(()=>{},[user_Friends])
   const [selected, setSelected] = useState(0);
   return (

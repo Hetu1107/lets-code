@@ -13,7 +13,7 @@ function App() {
       <>
         <Error error={ErrorMssg}/>
         <ErrorContext.Provider value={setErrorMssg}>
-          <Modal />
+          {/* <Modal /> */}
           <Home />
         </ErrorContext.Provider>
       </>
