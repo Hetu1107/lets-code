@@ -2,11 +2,12 @@
 .lines-editor{
     width: 100%;
     height: fit-content;
+    max-height: calc(100vh - 110px);
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    overflow: scroll;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: scroll;
     padding: 0;
     .lines{
         width: 5%;
@@ -46,7 +47,7 @@
     width: 95%;
     min-height: calc(100vh - 110px);
     max-height: fit-content;
-    overflow: scroll;
+    // overflow: scroll;
 }
 .main-editor-code .ql-toolbar{
     display: none;
