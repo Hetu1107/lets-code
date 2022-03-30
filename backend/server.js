@@ -2,6 +2,10 @@
 require('dotenv').config({path : "./config.env"});
 const express = require('express');
 const connectDB = require('./config/db');
+const fetch = require('node-fetch');
+globalThis.fetch = fetch;
+const atob = require('atob');
+globalThis.atob = atob;
 // connection with the database 
 connectDB();
 const errorHandler = require('./middleware/errorHandler');

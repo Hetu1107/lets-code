@@ -74,6 +74,7 @@ function Editor() {
       />
       <RightEditor
         setSelectedFile={setSelectedFile}
+        selectedFile={selectedFile}
         files={files}
         setFiles={setFiles}
         roomID={id}

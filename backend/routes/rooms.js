@@ -6,6 +6,7 @@ const { addPeople } = require('../controllers/rooms/room/addPeople');
 const { createRoom } = require('../controllers/rooms/room/create');
 const { getRooms } = require('../controllers/rooms/room/get');
 const { removePeople } = require('../controllers/rooms/room/removePeople');
+const { runcode } = require('../controllers/runCode/run');
 
 // middlewares
 const { access } = require('../middleware/access');
@@ -23,4 +24,8 @@ roomRouter.route("/removepeople/:id").put(access,removePeople); // remove user f
 roomRouter.route("/room/:id").get(getAllFiles); // here id is id of room 
 roomRouter.route("/room/create/:id").post(addFile); // here id is the id of room
 // roomRouter.route("/room/getfile/:id").get(); // here id is the id of file
+
+
+// runcode 
+roomRouter.route("/room/:id").post(runcode);
 module.exports = roomRouter

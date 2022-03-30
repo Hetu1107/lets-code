@@ -1,8 +1,51 @@
 @import "variable";
-.main-editor-code{
+.lines-editor{
     width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+    padding: 0;
+    .lines{
+        width: 5%;
+        min-height: calc(100vh - 110px);
+        max-height: 100%;
+        background-color: $li;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        p{
+            margin: 0;
+            padding: 0;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            line-height: 1.42;
+            tab-size: 4;
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: $li-color;
+            font-size: 16px;
+            font-family: "Rubik", sans-serif;
+            font-weight: 300;
+            cursor: text;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+            &:nth-child(1){
+                margin-top: 12px;
+            }
+        }
+    }
+}
+.main-editor-code{
+    width: 95%;
     min-height: calc(100vh - 110px);
-    max-height: calc(100vh - 110px);
+    max-height: fit-content;
     overflow: scroll;
 }
 .main-editor-code .ql-toolbar{

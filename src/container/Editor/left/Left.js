@@ -8,6 +8,7 @@ function LeftEditor(props) {
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
   const [text, setText] = useState("");
+  const [lines,setLines] = useState([1]);
   useEffect(() => {
     if (props == null) return;
     const s = io("/");
@@ -22,25 +23,34 @@ function LeftEditor(props) {
     if (socket == null || quill == null || props == null) return;
     if (props.selectedFile == null) return;
     socket.once("load-document", (text) => {
-      console.log(text);
       quill.setText(text);
       quill.enable();
     });
     socket.emit("get-document", props.selectedFile._id);
   }, [socket, quill, props]);
 
-  // updating the file 
-  useEffect(()=>{
+  // updating the file
+  useEffect(() => {
     if (socket == null || quill == null || props == null) return;
     if (props.selectedFile == null) return;
-    const interval = setInterval(()=>{
-      socket.emit('save-document',quill.getText());
-    },1000)
+    const interval = setInterval(() => {
+      let a = props.selectedFile;
+      a.text = quill.getText();
+      var length = quill.getLines().length;
+      console.log(length);
+      let li = []
+      for(var i =0;i<length;i++){
+        li.push(<p>{i+1}</p>)
+      }
+      setLines(li);
+      props.setSelectedFile(a);
+      socket.emit("save-document", quill.getText());
+    }, 1000);
 
-    return ()=>{
+    return () => {
       clearInterval(interval);
-    }
-  },[socket,quill,props])
+    };
+  }, [socket, quill, props]);
   // recieved changes
   useEffect(() => {
     if (quill == null || socket == null || props == null) return;
@@ -67,16 +77,19 @@ function LeftEditor(props) {
   }, [socket, quill]);
 
   // editor ref to a div with the id : code-editor
-  const editorRef = useCallback((editor) => {
-    if (editor == null || props == null) return;
-    editor.innerHTML = "";
-    const codeEditor = document.createElement("div");
-    editor.append(codeEditor);
-    let q = new Quill(codeEditor, { theme: "snow" });
-    q.disable();
-    q.setText("Loading...");
-    setQuill(q);
-  }, [props]);
+  const editorRef = useCallback(
+    (editor) => {
+      if (editor == null || props == null) return;
+      editor.innerHTML = "";
+      const codeEditor = document.createElement("div");
+      editor.append(codeEditor);
+      let q = new Quill(codeEditor, { theme: "snow" });
+      q.disable();
+      q.setText("Loading...");
+      setQuill(q);
+    },
+    [props]
+  );
 
   // check selected file if its null or not
   const checkSelectedFile = () => {
@@ -95,11 +108,22 @@ function LeftEditor(props) {
               <span onClick={() => props.setSelectedFile(null)}>&times;</span>
             </div>
           </div>
-          <div
-            id="code-editor"
-            className="main-editor-code"
-            ref={editorRef}
-          ></div>
+          <div className="lines-editor">
+            <div className="lines">
+              {
+                lines.map((res)=>{
+                  return(
+                    res
+                  )
+                })
+              }
+            </div>
+            <div
+              id="code-editor"
+              className="main-editor-code"
+              ref={editorRef}
+            ></div>
+          </div>
         </>
       );
     }

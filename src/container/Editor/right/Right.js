@@ -28,7 +28,7 @@ function RightEditor(props) {
         />
       );
     } else if (select == 2) {
-      return <Run />;
+      return <Run selectedFile={props.selectedFile}/>;
     } else if (select == 3) {
       return <FriendsEditor people={props.people} setPeople={props.setPeople} id={props.roomID}/>;
     } else {
