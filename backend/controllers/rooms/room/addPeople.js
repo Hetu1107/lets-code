@@ -5,7 +5,9 @@ exports.addPeople = async (req,res,next) =>{
     try{
         const room = await Room.findByIdAndUpdate(req.params.id,{$addToSet : {people : id1}});
         const roomID = await room._id;
-        await User.findByIdAndUpdate(id1,{$addToSet : {rooms : roomID}});
+        const owner = await room.owner;
+        const roomname = await room.roomname;
+        await User.findByIdAndUpdate(id1,{$addToSet : {rooms : {roomID,owner,roomname}}});
         res.status(201).json({success : true,mssg : "user added"});
     }catch(e){
         next(e);

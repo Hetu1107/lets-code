@@ -69,9 +69,9 @@ function UserFriends(props) {
         <div className="search-results select">
           {user_Friends.length>0 && user_Friends[selected].rooms.map((res, index) => {
             return(
-            <div className="main-bot-box">
+            <div className="main-bot-box" key={`user-friends-${index}`}>
               <div className="left">
-                <h4>{res}</h4>
+                <h4>{res.roomname}</h4>
               </div>
               <div className="right">
                 <i class="fas fa-angle-right"></i>

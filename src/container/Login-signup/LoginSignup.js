@@ -42,7 +42,13 @@ function LoginSignup() {
       }).then(()=>{
         navigate("/user");
         setLoad(0);
-      })
+      }).catch((e) => {
+        setLoad(0);
+        error(e.response.data.error);
+        setTimeout(() => {
+          error("");
+        }, 5000);
+      });
     } catch (e) {
       error(e.response.data.error);
       setTimeout(() => {
@@ -74,7 +80,13 @@ function LoginSignup() {
       }).then(()=>{
         navigate("/user");
         setLoad(0);
-      })
+      }).catch((e) => {
+        setLoad(0);
+        error(e.response.data.error);
+        setTimeout(() => {
+          error("");
+        }, 5000);
+      });
     } catch (e) {
       console.log(e);
       // error(e);

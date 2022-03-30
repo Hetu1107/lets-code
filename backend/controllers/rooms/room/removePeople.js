@@ -5,7 +5,7 @@ exports.removePeople = async(req,res,next)=>{
     try{
         const room = await Room.findByIdAndUpdate(req.params.id,{$pull : {people : id1}});
         const roomID = await room._id;
-        const user  = await User.findByIdAndUpdate(id1,{$pull : {rooms : roomID}});
+        const user  = await User.findByIdAndUpdate(id1,{$pull : {rooms : {roomID : roomID}}});
         console.log(user);
         res.status(201).json({success : true,mssg : "user removed"});
     }catch(e){

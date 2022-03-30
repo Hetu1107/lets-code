@@ -45,7 +45,13 @@ function Friends(props) {
             setLoad(0);
             set_Sended(data.sended);
             set_Friends(data.friends);
-            set_User_Rooms(data.user_rooms);
+            set_User_Rooms(data.rooms);
+          }).catch((e) => {
+            setLoad(0);
+            error(e.response.data.error);
+            setTimeout(() => {
+              error("");
+            }, 5000);
           });
       } catch (e) {
         error(e.response.data.error);

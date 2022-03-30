@@ -16,18 +16,45 @@ function Editor() {
   const error = useContext(ErrorContext);
 
   const [files, setFiles] = useState([]);
-  const [people, setPeople] = useState();
-  const [friends, setFriends] = useState();
+  const [people, setPeople] = useState([]);
+  const [friends, setFriends] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   useEffect(() => {
     setLoad(1);
     const getFiles = async () => {
       try {
-        await axios.get(`/api/v1/rooms/room/${id}`).then((res) => {
-          setPeople(res.data.people);
-          setFiles(res.data.filesData);
-          setLoad(0);
-        });
+        await axios
+          .get(`/api/v1/rooms/room/${id}`)
+          .then((res) => {
+            setPeople(res.data.people);
+            setFiles(res.data.filesData);
+            setLoad(0);
+          })
+          .then(async () => {
+            // getting all the users
+            try {
+              await axios
+                .get(`/api/v1/friends/getfriends/${localStorage.getItem("id")}`)
+                .then((res) => {
+                  return res.data;
+                })
+                .then((data) => {
+                  setFriends(data.friends);
+                })
+                .catch((e) => {
+                  setLoad(0);
+                  error(e.response.data.error);
+                  setTimeout(() => {
+                    error("");
+                  }, 5000);
+                });
+            } catch (e) {
+              error(e.response.data.error);
+              setTimeout(() => {
+                error("");
+              }, 5000);
+            }
+          });
       } catch (e) {
         error(e.response.data.error);
         setTimeout(() => {
@@ -50,6 +77,9 @@ function Editor() {
         files={files}
         setFiles={setFiles}
         roomID={id}
+        people={people}
+        setPeople={setPeople}
+        friends={friends}
       />
     </div>
   );

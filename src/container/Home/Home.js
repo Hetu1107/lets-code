@@ -80,6 +80,13 @@ function Home() {
               set_User_Email(data.user.email);
               set_User_Rooms(data.user.rooms);
               set_User_Id(data.user._id);
+            })
+            .catch((e) => {
+              setLoad(0);
+              error(e.response.data.error);
+              setTimeout(() => {
+                error("");
+              }, 5000);
             });
         } catch (e) {
           error(e.response.data.error);
@@ -124,7 +131,7 @@ function Home() {
         }}
       >
         <LoaderContext.Provider value={setLoad}>
-          <Modal/>
+          <Modal />
           <Sidebar />
           <Nav />
           <Routes>

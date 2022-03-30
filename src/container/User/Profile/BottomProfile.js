@@ -26,7 +26,13 @@ function BottomProfile() {
         setNotifications(data.notifications);
         setRecieved(data.recieved);
         setLoad(0);
-      })
+      }).catch((e) => {
+        setLoad(0);
+        error(e.response.data.error);
+        setTimeout(() => {
+          error("");
+        }, 5000);
+      });
       console.log(recieved)
     }catch(e){
       error(e.response.data.error);

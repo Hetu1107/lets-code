@@ -30,9 +30,9 @@ function RightEditor(props) {
     } else if (select == 2) {
       return <Run />;
     } else if (select == 3) {
-      return <FriendsEditor />;
+      return <FriendsEditor people={props.people} setPeople={props.setPeople} id={props.roomID}/>;
     } else {
-      return <AddFriend />;
+      return <AddFriend friends={props.friends} people={props.people} id={props.roomID} setPeople={props.setPeople}/>;
     }
   };
 
@@ -40,6 +40,8 @@ function RightEditor(props) {
   const [filename, setFileName] = useState("");
   const text =
     "#include<iostream>\nusing namespace std;\n\nint main(){\n\nreturn 0;\n}";
+
+  // add file 
   const addFile = async () => {
     setLoad(1);
     const config = {
@@ -72,9 +74,10 @@ function RightEditor(props) {
       setTimeout(() => {
         error("");
       }, []);
-      setLoad(0);
     }
   };
+
+  // return jsx 
   return (
     <>
       {/* add file modal */}
