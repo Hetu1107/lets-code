@@ -133,6 +133,23 @@
                 }
             }
         }
+        a{
+            width: 90%;
+            height: fit-content;
+            padding: 0;
+            margin: 5px 0;
+            text-decoration: none;
+            &:nth-child(1){
+                margin-top: 20px;
+            }
+            .main-bot-box{
+                width: 90%;
+                margin: 0;
+                &:nth-child(1){
+                    margin-top: 0px;
+                }
+            }
+        }
     }
 }
 .invite-friends {

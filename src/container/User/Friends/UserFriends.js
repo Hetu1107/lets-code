@@ -1,10 +1,43 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,useContext} from "react";
+import { Link } from "react-router-dom";
 import ReturnAvtars from "../../Avtars/Avtar";
+import { UserContext } from "../../context/UserContext";
 let Avtars = ReturnAvtars();
 function UserFriends(props) {
+  const {user_Rooms} = useContext(UserContext);
   const [user_Friends,set_User_Friends] = useState(props.friends);
   useEffect(()=>{},[user_Friends])
   const [selected, setSelected] = useState(0);
+
+
+  const returnRooms = ()=>{
+    if(user_Friends.length==0){
+      return(
+        <div className="empty">
+          <h3>Nothing is here...</h3>
+        </div>
+      )
+    }else{
+      return(
+        user_Friends[selected].rooms.map((res, index) => {
+          if(user_Rooms.filter(e => e.roomID === res.roomID).length > 0){
+            return(
+          <Link to={`/user/rooms/${res.roomID}`}>
+          <div className="main-bot-box" key={`user-friends-${index}`}>
+              <div className="left">
+                <h4>{res.roomname}</h4>
+              </div>
+              <div className="right">
+                <i class="fas fa-angle-right"></i>
+              </div>
+            </div>
+          </Link>
+            );
+          }
+        })
+      )
+    }
+  }
   return (
     <div className="main-friends">
       <div className="friends-list">
@@ -67,18 +100,7 @@ function UserFriends(props) {
       <div className="friends-common">
         <h2>Common-Rooms</h2>
         <div className="search-results select">
-          {user_Friends.length>0 && user_Friends[selected].rooms.map((res, index) => {
-            return(
-            <div className="main-bot-box" key={`user-friends-${index}`}>
-              <div className="left">
-                <h4>{res.roomname}</h4>
-              </div>
-              <div className="right">
-                <i class="fas fa-angle-right"></i>
-              </div>
-            </div>
-            );
-          })}     
+          {returnRooms()}     
         </div>
       </div>
     </div>

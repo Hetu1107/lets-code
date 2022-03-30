@@ -16,7 +16,14 @@ function Room() {
         setRooms(user_Rooms);
     },[user_Rooms,user_Id])
     const returnRooms = ()=>{
-        if(Rooms && userId){
+        if(!Rooms || Rooms.length==0){
+            return(
+                <div className='empty'>
+                    <h3>Nothing is here...</h3>
+                </div>
+            )
+        }
+        else if(Rooms && userId){
             return(
                 Rooms.map((res,index)=>{
                     return(

@@ -27,6 +27,20 @@
             margin-top: 100px;
         }
     }
+    .empty {
+        width: 90%;
+        height: 100vh;
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h3 {
+            font-size: 16px;
+            color: $color;
+            font-family: $poppins;
+            font-weight: 300;
+        }
+    }
 }
 .main-room-card{
     width: 100%;
