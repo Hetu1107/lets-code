@@ -64,6 +64,7 @@ function AddFriend(props) {
             error("");
           }, 5000);
         });
+        await axios.put(`/api/v1/user/notification/add/${id1}`,{value :  `you are added to the new room` },config);
     } catch (e) {
       setLoad(0);
       error(e.response.data.error);

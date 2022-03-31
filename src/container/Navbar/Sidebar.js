@@ -24,11 +24,11 @@ const sidebarLi = [
     icon: "fas fa-snowman",
     to: "/user",
   },
-  {
-    name: "Log-Out",
-    icon: "fas fa-sign-out-alt",
-    to: "/",
-  },
+  // {
+  //   name: "Log-Out",
+  //   icon: "fas fa-sign-out-alt",
+  //   to: "/",
+  // },
 ];
 let Avtars = ReturnAvtars();
 function Sidebar(props) {

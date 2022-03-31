@@ -1,4 +1,5 @@
 import React,{useState,useContext} from "react";
+import { useNavigate } from "react-router-dom";
 import ReturnAvtars from "../Avtars/Avtar";
 import { UserContext } from "../context/UserContext";
 import "../style/Nav.scss";
@@ -7,12 +8,26 @@ let toggle = 0;
 let drop = 0;
 let Avtars = ReturnAvtars();
 function Nav(props) {
+  const navigate = useNavigate();
   let profile = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png';
   const [width,setwidth] = useState(window.screen.width);
   const {user_Name,user_Index} = useContext(UserContext);
   window.addEventListener('resize',()=>{
       setwidth(window.screen.width);
-  })
+  });
+
+
+  const profileRed = ()=>{
+    navigate("/user");
+    document.getElementById('nav-profile-drop').style.top = "-150px";
+    drop = 0;
+  }
+  const logOut =()=>{
+    localStorage.clear();
+    navigate("/");
+    document.getElementById('nav-profile-drop').style.top = "-150px";
+    drop = 0;
+  }
   return (
     <nav class="top-nav">
       <div className="left-nav" id="left-nav">
@@ -92,11 +107,11 @@ function Nav(props) {
               <i class="fas fa-sort-down"></i>
             </div>
             <div className="nav-profile-drop" id="nav-profile-drop">
-              <div>
+              <div onClick={profileRed}>
                 <i class="fas fa-user-alt"></i>
                 <h4>Profile</h4>
               </div>
-              <div>
+              <div onClick={logOut}>
                 <i class="fas fa-sign-out-alt"></i>
                 <h4>Log-Out</h4>
               </div>
