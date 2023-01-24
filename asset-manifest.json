@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Hetu1107/lets-code/static/css/main.b3339b28.css",
+    "main.js": "/Hetu1107/lets-code/static/js/main.37ea1b45.js",
+    "static/media/back.jpg": "/Hetu1107/lets-code/static/media/back.1a1db07f6eeff71f67d1.jpg",
+    "static/media/1.gif": "/Hetu1107/lets-code/static/media/1.c9652e1cb026c8caa86f.gif",
+    "static/media/3.jpg": "/Hetu1107/lets-code/static/media/3.4eaada65c7b9106a2dab.jpg",
+    "static/media/5.webp": "/Hetu1107/lets-code/static/media/5.a0ea0bb22668d73c9a96.webp",
+    "static/media/4.webp": "/Hetu1107/lets-code/static/media/4.759b6d9430629f6812f5.webp",
+    "static/media/2.jpg": "/Hetu1107/lets-code/static/media/2.964cad9ce1744cd17818.jpg",
+    "static/media/cpp.svg": "/Hetu1107/lets-code/static/media/cpp.157c521f834a949ff5c229c7295c3446.svg",
+    "index.html": "/Hetu1107/lets-code/index.html",
+    "main.b3339b28.css.map": "/Hetu1107/lets-code/static/css/main.b3339b28.css.map",
+    "main.37ea1b45.js.map": "/Hetu1107/lets-code/static/js/main.37ea1b45.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b3339b28.css",
+    "static/js/main.37ea1b45.js"
+  ]
+}
