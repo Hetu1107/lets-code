@@ -3,7 +3,7 @@
   "homepage": "https://github.com/Hetu1107/lets-code",
   "version": "0.1.0",
   "private": false,
-  "proxy": "https://lets-code-backend-f27r.onrender.com",
+  "proxy": "http://localhost:5000/",  
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",

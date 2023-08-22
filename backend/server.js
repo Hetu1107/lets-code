@@ -22,7 +22,9 @@ app.use(express.json());
 app.use(cors());
 
 
-
+app.get("/",(req,res)=>{
+    res.send("Hello WOrld")
+})
 app.use("/api/v1",require('./routes/index'));
 // checking for token acceptence 
 app.use("/api/private",require('./routes/private'));

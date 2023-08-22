@@ -16,7 +16,7 @@ const roomSchema = new mongoose.Schema({
 
     ],
     files : [
-
+        
     ]
 });
 
