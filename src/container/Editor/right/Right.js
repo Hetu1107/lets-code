@@ -52,7 +52,7 @@ function RightEditor(props) {
     try {
       await axios
         .post(
-          `/api/v1/rooms/room/create/${props.roomID}`,
+          `https://lets-code-backend-f27r.onrender.com/api/v1/rooms/room/create/${props.roomID}`,
           { filename, text },
           config
         )
