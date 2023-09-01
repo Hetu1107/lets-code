@@ -28,7 +28,6 @@ function Run(props) {
             return;
           })
           .catch((e) => {
-            console.log(e);
             document.getElementById("run-code-btn").innerHTML = `Run`;
             return;
           });

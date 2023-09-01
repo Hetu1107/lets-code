@@ -114,7 +114,7 @@ function Home() {
     }
   };
   return (
-    <div className="main-home-page" id="main-home-page">
+    <>
       {returnLoader()}
       <UserContext.Provider
         value={{
@@ -132,29 +132,72 @@ function Home() {
       >
         <LoaderContext.Provider value={setLoad}>
           <Modal />
-          <Sidebar />
-          <Nav />
           <Routes>
-            <Route path="/register" element={<LoginSignup />} />
-            <Route path="/" element={<Main />} />
+            <Route
+              path="/"
+              element={
+                <div className="main-home-page" id="main-home-page">
+                  <Sidebar />
+                  <Nav />
+                  <Main />
+                </div>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <div className="main-home-page" id="main-home-page">
+                  <Sidebar />
+                  <Nav />
+                  <Main />
+                </div>
+              }
+            />
             <Route
               path="/user"
-              element={<Private component={<Profile />}></Private>}
+              element={
+                <div className="main-home-page" id="main-home-page">
+                  <Sidebar />
+                  <Nav />
+                  <Private component={<Profile />}></Private>
+                </div>
+              }
             />
             <Route
               path="/user/friends"
-              element={<Private component={<Friends />}></Private>}
+              element={
+                <div className="main-home-page" id="main-home-page">
+                  <Sidebar />
+                  <Nav />
+                  <Private component={<Friends />}></Private>
+                </div>
+              }
             />
             <Route
               path="/user/rooms"
-              element={<Private component={<Room />}></Private>}
+              element={
+                <div className="main-home-page" id="main-home-page">
+                  <Sidebar />
+                  <Nav />
+                  <Private component={<Room />}></Private>
+                </div>
+              }
             />
-            <Route path="/user/rooms/:id" element={<Editor />} />
-            <Route path="*" element={<Main />} />
+            <Route
+              path="/user/rooms/:id"
+              element={
+                <div className="main-home-page" id="main-home-page">
+                  <Sidebar />
+                  <Nav />
+                  <Editor />
+                </div>
+              }
+            />
+            <Route path="/register" element={<LoginSignup />} />
           </Routes>
         </LoaderContext.Provider>
       </UserContext.Provider>
-    </div>
+    </>
   );
 }
 

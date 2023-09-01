@@ -109,7 +109,7 @@ function Invite(props) {
                 });           
               }
               return(
-                <div className="main-bot-box">
+                <div className="main-bot-box" key={`friend-reest-demo-${index}`}>
                   <div className="left">
                     <img src={Avtars[res.profileIMG || 0].src}/>
                     <h4>{res.username}</h4>

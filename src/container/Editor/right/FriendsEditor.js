@@ -61,7 +61,7 @@ function FriendsEditor(props) {
     <div className="right-container-editor">
       {people!=null && people.map((res, index) => {
         return (
-          <div className="friend">
+          <div className="friend" key={`friends-list-demo-${index}`}>
             <div className="img">
               <span className="offline"></span>
               <img src={Avtar[res.profileIMG].src} />

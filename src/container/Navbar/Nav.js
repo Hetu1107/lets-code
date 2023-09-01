@@ -1,42 +1,47 @@
-import React,{useState,useContext} from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ReturnAvtars from "../Avtars/Avtar";
 import { UserContext } from "../context/UserContext";
 import "../style/Nav.scss";
+
+// icons
+import { BiUser } from "react-icons/bi";
+import { IoLogOutOutline } from "react-icons/io5";
+import { AiFillCaretDown } from "react-icons/ai";
 
 let toggle = 0;
 let drop = 0;
 let Avtars = ReturnAvtars();
 function Nav(props) {
   const navigate = useNavigate();
-  let profile = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png';
-  const [width,setwidth] = useState(window.screen.width);
-  const {user_Name,user_Index} = useContext(UserContext);
-  window.addEventListener('resize',()=>{
-      setwidth(window.screen.width);
+  let profile =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
+  const [width, setwidth] = useState(window.screen.width);
+  const { user_Name, user_Index } = useContext(UserContext);
+  window.addEventListener("resize", () => {
+    setwidth(window.screen.width);
   });
 
-
-  const profileRed = ()=>{
+  const profileRed = () => {
     navigate("/user");
-    document.getElementById('nav-profile-drop').style.top = "-150px";
+    document.getElementById("nav-profile-drop").style.top = "-150px";
     drop = 0;
-  }
-  const logOut =()=>{
+  };
+  const logOut = () => {
     localStorage.clear();
     navigate("/");
-    document.getElementById('nav-profile-drop').style.top = "-150px";
+    document.getElementById("nav-profile-drop").style.top = "-150px";
     drop = 0;
-  }
+  };
   return (
     <nav class="top-nav">
       <div className="left-nav" id="left-nav">
-          <div>
-          <img src="https://cdn.iconscout.com/icon/free/png-256/notepad-2642816-2192663.png"/>
-          </div>
+        <div>
+          <img src="https://cdn.iconscout.com/icon/free/png-256/notepad-2642816-2192663.png" />
+        </div>
       </div>
       <div className="right-nav" id="right-nav">
-        <button
+        {/* <button
           id="nav-toggle"
           className="nav-toggle"
           onClick={() => {
@@ -81,38 +86,45 @@ function Nav(props) {
           <span></span>
           <span></span>
           <span></span>
-        </button>
-        <div className="nav-search">
+        </button> */}
+        {/* <div className="nav-search">
           <input type="text" placeholder="search here..." />
-        </div>
+        </div> */}
         <div className="nev-right-right">
-          <div className="nev-right-button">
+          {/* <div className="nev-right-button">
             <button onClick={()=>{
               document.getElementById('modal').classList.add('modal-active');
             }}><i class="fas fa-plus"></i> create room</button>
-          </div>
+          </div> */}
           <div className="nev-right-profile">
-            <div className="nav-profile" onClick={()=>{
-                if(drop==0){
-                    document.getElementById('nav-profile-drop').style.top = "90%";
-                    drop = 1;
+            <div
+              className="nav-profile"
+              onClick={() => {
+                if (drop == 0) {
+                  document.getElementById("nav-profile-drop").style.top = "90%";
+                  drop = 1;
+                } else {
+                  document.getElementById("nav-profile-drop").style.top =
+                    "-150px";
+                  drop = 0;
                 }
-                else{
-                    document.getElementById('nav-profile-drop').style.top = "-150px";
-                    drop = 0;
-                }
-            }}>
-              <img src={user_Index ? Avtars[user_Index].src : profile} style={{borderRadius: "50%"}}/>
+              }}
+            >
+              <img
+                src={user_Index ? Avtars[user_Index].src : profile}
+                style={{ borderRadius: "50%" }}
+              />
               <h4>{user_Name}</h4>
-              <i class="fas fa-sort-down"></i>
+              <AiFillCaretDown/>
+              {/* <i class="fas fa-sort-down"></i> */}
             </div>
             <div className="nav-profile-drop" id="nav-profile-drop">
               <div onClick={profileRed}>
-                <i class="fas fa-user-alt"></i>
+                <BiUser />
                 <h4>Profile</h4>
               </div>
               <div onClick={logOut}>
-                <i class="fas fa-sign-out-alt"></i>
+                <IoLogOutOutline />
                 <h4>Log-Out</h4>
               </div>
             </div>

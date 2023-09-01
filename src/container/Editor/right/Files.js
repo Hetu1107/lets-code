@@ -13,6 +13,7 @@ function Files(props) {
         return (
           <div
             id={`file-${index}`}
+            key={`file-${index}`}
             onClick={() => {
               if (id != "") {
                 document.getElementById(id).classList.remove("selected-file");

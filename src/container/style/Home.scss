@@ -40,7 +40,6 @@ body {
     align-items: center;
     width: calc(100% - 70px);
     height: fit-content;
-    min-height: 100vh;
     max-height: fit-content;
     position: absolute;
     transition: all 500ms ease;
@@ -53,5 +52,6 @@ body {
 @media only screen and (max-width: 1000px){
     .main-home-page{
         width: 100vw;
+        min-height: calc(100vh + 80px);
     }
 }

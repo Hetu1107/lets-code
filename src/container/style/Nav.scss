@@ -1,6 +1,6 @@
 @import "variable";
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap');
-.top-nav{
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
+.top-nav {
     width: 100%;
     position: fixed;
     left: 0;
@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .left-nav{
+    .left-nav {
         width: 70px;
         height: 100%;
         display: flex;
@@ -23,7 +23,7 @@
         transition: all 500ms ease;
         overflow: hidden;
         background-color: $purple;
-        div{
+        div {
             position: relative;
             width: 100%;
             min-width: 70px;
@@ -33,7 +33,7 @@
             align-items: center;
             margin: 0;
             padding: 0;
-            img{
+            img {
                 width: 35px;
                 height: 35px;
                 display: flex;
@@ -46,15 +46,16 @@
             }
         }
     }
-    .right-nav{
+    .right-nav {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
-        width: calc(100% - 70px);
+        width: calc(100% - 150px);
         height: 100%;
         position: relative;
+        padding: 0 40px;
         transition: all 500ms ease;
-        .nav-toggle{
+        .nav-toggle {
             width: 30px;
             height: 100%;
             margin: 0;
@@ -69,7 +70,7 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            span{
+            span {
                 margin: 0;
                 padding: 0;
                 width: 25px;
@@ -78,14 +79,14 @@
                 margin: 2px 0;
             }
         }
-        .nav-search{
+        .nav-search {
             width: 45%;
             height: 100%;
             display: flex;
             align-items: center;
             margin: 0;
             padding: 0;
-            input{
+            input {
                 width: 70%;
                 border: none;
                 outline: none;
@@ -100,20 +101,20 @@
                 margin-left: 1%;
             }
         }
-        .nev-right-right{
+        .nev-right-right {
             width: 45%;
             height: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            .nev-right-button{
+            .nev-right-button {
                 width: 100%;
                 height: 100%;
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
-                button{
+                button {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -132,16 +133,16 @@
                     border-radius: 4px;
                     transition: all 300ms ease;
                     font-family: $rubik;
-                    &:hover{
+                    &:hover {
                         opacity: 0.7;
                     }
-                    i{
+                    i {
                         margin: 0 5px;
                         font-size: 16px;
                     }
                 }
             }
-            .nev-right-profile{
+            .nev-right-profile {
                 width: 100%;
                 height: 100%;
                 display: flex;
@@ -149,10 +150,10 @@
                 justify-content: flex-end;
                 align-items: center;
                 position: relative;
-                .nav-profile{
+                .nav-profile {
                     width: fit-content;
                     height: fit-content;
-                    padding: 4px 6px;
+                    padding: 5px 10px;
                     margin: 0;
                     display: flex;
                     flex-direction: row;
@@ -162,12 +163,12 @@
                     transition: all 300ms ease;
                     cursor: pointer;
                     position: relative;
-                    &:hover{
+                    &:hover {
                         background-color: $li;
                     }
-                    img{
-                        width: 35px;
-                        height: 35px;
+                    img {
+                        width: 30px;
+                        height: 30px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -175,10 +176,10 @@
                         margin: 0;
                         padding: 0;
                         background-size: contain;
-                        background-position:center;
+                        background-position: center;
                         margin: 0 2px;
                     }
-                    h4{
+                    h4 {
                         margin: 0;
                         padding: 0;
                         font-size: 16px;
@@ -187,13 +188,13 @@
                         font-family: $rubik;
                         font-weight: 400;
                     }
-                    i{
+                    svg {
                         font-size: 10px;
                         margin: 0 2px;
                         color: $color;
                     }
                 }
-                .nav-profile-drop{
+                .nav-profile-drop {
                     position: absolute;
                     // display: none;
                     background-color: $navtop;
@@ -209,7 +210,7 @@
                     transition: all 300ms ease;
                     border-radius: 5px;
                     box-shadow: 0px 0px 35px -3px black;
-                    div{
+                    div {
                         position: relative;
                         width: 100%;
                         height: 50px;
@@ -220,19 +221,19 @@
                         flex-direction: row;
                         transition: all 300ms ease;
                         cursor: pointer;
-                        i{
+                        svg {
                             margin: 0 3px;
                             color: $color;
                             font-size: 16px;
                         }
-                        h4{
+                        h4 {
                             font-family: $rubik;
                             font-size: 16px;
                             font-weight: 400;
                             margin: 0 3px;
                             color: $color;
                         }
-                        &:hover{
+                        &:hover {
                             background-color: $li;
                         }
                     }
@@ -241,11 +242,11 @@
         }
     }
 }
-.sidebar{
+.sidebar {
     width: 70px;
     min-height: 100vh;
     height: 100%;
-    background-color: #191c24;
+    background-color: $card;
     position: fixed;
     top: 0;
     left: 0;
@@ -255,8 +256,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    a{
-        width:  100%;
+    a {
+        width: 80%;
         background-color: transparent;
         height: 40px;
         max-height: fit-content;
@@ -270,11 +271,9 @@
         position: relative;
         cursor: pointer;
         text-decoration: none;
-        &:hover{
-            background-color: $li;
-        }
+        margin: 5px 0;
     }
-    .side-profile{
+    .side-profile {
         width: 100%;
         background-color: transparent;
         min-height: 40px;
@@ -287,27 +286,28 @@
         transition: all 300ms ease;
         position: relative;
         cursor: pointer;
+        border-radius: 10px;
         text-overflow: clip;
-        &:hover{
+        &:hover {
             background-color: $li;
         }
-        .profile-round{
-            width: 70px;
+        .profile-round {
+            width: 100%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             right: 0;
             position: absolute;
-            img{
-                width: 35px;
-                height: 35px;
+            img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
                 background-size: contain;
                 background-position: center;
-                border-radius: 50%;
                 background-color: $background;
             }
-            .prof-round-bottom{
+            .prof-round-bottom {
                 position: absolute;
                 top: 34px;
                 right: 20px;
@@ -317,22 +317,22 @@
                 background-color: $error;
             }
         }
-        .side-prof-name{
-            width: 100px;
+        .side-prof-name {
+            width: 100%;
             height: 100%;
             height: fit-content;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            position:absolute;
+            position: absolute;
             right: 70px;
-            text-overflow:clip;
-            h2{
+            text-overflow: clip;
+            h2 {
                 width: 90px;
                 height: 100%;
                 overflow-x: hidden;
-                text-overflow:ellipsis;
+                text-overflow: ellipsis;
                 font-weight: 400;
                 font-family: $rubik;
                 font-size: 16px;
@@ -342,7 +342,7 @@
             }
         }
     }
-    .sidebar-li{
+    .sidebar-li {
         width: 100%;
         background-color: transparent;
         min-height: 40px;
@@ -354,43 +354,54 @@
         padding: 10px 0;
         transition: all 300ms ease;
         position: relative;
+        border-radius: 10px;
         cursor: pointer;
-        &:hover{
+        &:hover {
             background-color: $li;
+            .sidebar-li-ico {
+                svg {
+                    color: $color;
+                }
+            }
         }
-        &.active{
+        &.active {
             background-color: $li;
+            .sidebar-li-ico {
+                svg {
+                    color: $color;
+                }
+            }
         }
-        .sidebar-li-ico{
-            width: 70px;
+        .sidebar-li-ico {
+            width: 100%;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             right: 0;
             position: absolute;
-            i{
-                width: 35px;
-                height: 35px;
-                background-color: $li;
-                border-radius: 50%;
+            svg {
+                width: 20px;
+                height: 20px;
+                // background-color: $li;
+                // border-radius: 50%;
                 font-size: 16px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                color: $color;
+                color: $li-color;
             }
         }
-        .sidebar-li-h2{
+        .sidebar-li-h2 {
             width: 100px;
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            position:absolute;
+            position: absolute;
             right: 70px;
-            text-overflow:ellipsis;
-            h2{
+            text-overflow: ellipsis;
+            h2 {
                 font-weight: 400;
                 font-family: $rubik;
                 font-size: 16px;
@@ -401,57 +412,56 @@
         }
     }
 }
-@media only screen and (max-width: 1000px){
-    .sidebar{
-        right: 0;
-        width: 0;
-        z-index: 1000;
-        box-shadow: -10px 0 20px 7px rgba(255, 255, 255, 0.027);
-    }
-    .top-nav{
-    .right-nav{
-        justify-content: space-between;
-    .nav-toggle{
-        left: 95%;
-    }
-    .nav-search{
-        width: 45%;
-        margin-left: 0;
-        input{
-            margin-left: 10px;
+@media only screen and (max-width: 1000px) {
+    .sidebar {
+        top: calc(100% - 80px);
+        margin: 0;
+        padding: 5px 0;
+        z-index: 10;
+        width: 100%;
+        min-height: 70px;
+        max-height: 70px;
+        flex-direction: row;
+        bottom: 0;
+        left: 0;
+        a {
+            top: 0;
+            margin: 0 5px 0 5px;
+            padding: 5px 0;
         }
     }
-    .nev-right-right{
-        margin-right: 50px;
+}
+@media only screen and (max-width: 700px) {
+    .sidebar {
+        top: calc(100% - 70px);
+        margin: 0;
+        padding: 5px 0;
+        z-index: 10;
+        width: 100%;
+        min-height: 60px;
+        max-height: 60px;
+        flex-direction: row;
+        bottom: 0;
+        left: 0;
+        a {
+            top: 0;
+            margin: 0 5px 0 5px;
+        }
     }
-}
-}
-}
-@media only screen and (max-width: 700px){
-    .sidebar{
-        width: 0;
-    }
-    .top-nav{
-        .right-nav{
-            .nav-toggle{
-                left: 85%;
-            }
-            .nav-search{
-                display: none;
-            }
-            .nev-right-right{
-                width: 80%;
-                .nev-right-button{
-                    button{
+    .top-nav {
+        .right-nav {
+            .nev-right-right {
+                .nev-right-button {
+                    button {
                         font-size: 12px;
-                        i{
+                        i {
                             display: none;
                         }
                     }
                 }
-                .nev-right-profile{
-                    .nav-profile{
-                        h4{
+                .nev-right-profile {
+                    .nav-profile {
+                        h4 {
                             font-size: 12px;
                         }
                     }

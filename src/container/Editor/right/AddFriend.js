@@ -20,7 +20,6 @@ function AddFriend(props) {
       let r = 0;
         b.forEach(two => {
           if(one._id==two._id){
-            console.log(one);
             r = 1;
             return;
           }
@@ -78,7 +77,7 @@ function AddFriend(props) {
       {friends != null &&
         friends.map((res, index) => {
           return (
-            <div className="friend">
+            <div className="friend" key={`add-frnd-list-item-${index}`}>
               <div className="img">
                 <img src={Avtar[res.profileIMG].src} />
               </div>

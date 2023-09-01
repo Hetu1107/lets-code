@@ -37,7 +37,6 @@ function LeftEditor(props) {
       let a = props.selectedFile;
       a.text = quill.getText();
       var length = quill.getLines().length;
-      console.log(length);
       let li = []
       for(var i =0;i<length;i++){
         li.push(<p>{i+1}</p>)

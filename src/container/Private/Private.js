@@ -55,18 +55,18 @@ const Private = ({ component }) => {
                 } catch (e) {
                   error(e.response.data.error);
                   setLoad(0);
-                  setTimeout(()=>{
+                  setTimeout(() => {
                     error("");
-                  },5000)
+                  }, 5000);
                   navigate("/register");
                   // setting user to login type
                   set_User_Name("Login");
                 }
               } else {
                 error("Register First");
-                setTimeout(()=>{
+                setTimeout(() => {
                   error("");
-                },5000)
+                }, 5000);
                 navigate("/register");
                 // setting user to login type
                 set_User_Name("Login");
@@ -75,15 +75,15 @@ const Private = ({ component }) => {
             });
         } catch (e) {
           error(e.response.data.error);
-          setTimeout(()=>{
+          setTimeout(() => {
             error("");
-          },5000)
+          }, 5000);
           navigate("/register");
           setLoad(0);
         }
       };
       getId();
-      return component
+      return component;
     }
   };
   return check();
