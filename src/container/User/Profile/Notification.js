@@ -29,7 +29,7 @@ function Notification(props) {
       },
     };
     try{
-      await axios.put(`/api/v1/user/notification/remove/${index}`);
+      await axios.put(`https://lets-code-backend-f27r.onrender.com/api/v1/user/notification/remove/${index}`);
       let a = [...Notifi];
       a.splice(inde,1);
       setNotifi(a);

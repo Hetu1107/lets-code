@@ -24,7 +24,7 @@ function Editor() {
     const getFiles = async () => {
       try {
         await axios
-          .get(`/api/v1/rooms/room/${id}`)
+          .get(`https://lets-code-backend-f27r.onrender.com/api/v1/rooms/room/${id}`)
           .then((res) => {
             setPeople(res.data.people);
             setFiles(res.data.filesData);
@@ -34,7 +34,7 @@ function Editor() {
             // getting all the users
             try {
               await axios
-                .get(`/api/v1/friends/getfriends/${localStorage.getItem("id")}`)
+                .get(`https://lets-code-backend-f27r.onrender.com/api/v1/friends/getfriends/${localStorage.getItem("id")}`)
                 .then((res) => {
                   return res.data;
                 })

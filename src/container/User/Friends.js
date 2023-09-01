@@ -18,7 +18,7 @@ function Friends(props) {
       const id = localStorage.getItem("id");
       try {
         await axios
-          .get(`/api/v1/user/getall/${id}`)
+          .get(`https://lets-code-backend-f27r.onrender.com/api/v1/user/getall/${id}`)
           .then((res) => {
             return res.data;
           })
@@ -37,7 +37,7 @@ function Friends(props) {
       const id = localStorage.getItem("id");
       try {
         await axios
-          .get(`/api/v1/friends/getfriends/${id}`)
+          .get(`https://lets-code-backend-f27r.onrender.com/api/v1/friends/getfriends/${id}`)
           .then((res) => {
             return res.data;
           })

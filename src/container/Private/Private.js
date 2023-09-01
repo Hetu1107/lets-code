@@ -34,7 +34,7 @@ const Private = ({ component }) => {
         };
         try {
           await axios
-            .get("/api/private", config)
+            .get("https://lets-code-backend-f27r.onrender.com/api/private", config)
             .then((data) => {
               localStorage.setItem("id", data.data.id);
             })
@@ -42,7 +42,7 @@ const Private = ({ component }) => {
               if (localStorage.getItem("id")) {
                 try {
                   await axios
-                    .get(`/api/v1/user/${localStorage.getItem("id")}`)
+                    .get(`https://lets-code-backend-f27r.onrender.com/api/v1/user/${localStorage.getItem("id")}`)
                     .then((res) => {
                       return res.data;
                     })

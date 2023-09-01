@@ -32,7 +32,7 @@ function FriendsEditor(props) {
       },
     };
     try{
-      await axios.put(`/api/v1/rooms/removepeople/${id}`,{id1,id2},config).then(()=>{
+      await axios.put(`https://lets-code-backend-f27r.onrender.com/api/v1/rooms/removepeople/${id}`,{id1,id2},config).then(()=>{
         let a = people;
         a.splice(index,1);
         setPeople(a);

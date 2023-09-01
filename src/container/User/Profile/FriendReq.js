@@ -36,7 +36,7 @@ function FriendReq(props) {
     try {
       let id1 = localStorage.getItem("id");
       let id2 = id;
-      await axios.put("/api/v1/friends/accept", { id1, id2 }, config);
+      await axios.put("https://lets-code-backend-f27r.onrender.com/api/v1/friends/accept", { id1, id2 }, config);
       setLoad(0);
       error("successfully added to friends");
       setTimeout(() => {
@@ -63,8 +63,8 @@ function FriendReq(props) {
     try {
       let id1 = localStorage.getItem("id");
       let id2 = id;
-      await axios.put("/api/v1/friends/reject", { id1, id2 }, config);
-      await axios.put(`/api/v1/user/notification/add/${id2}`,{value :  `new friend added` },config);
+      await axios.put("https://lets-code-backend-f27r.onrender.com/api/v1/friends/reject", { id1, id2 }, config);
+      await axios.put(`https://lets-code-backend-f27r.onrender.com/api/v1/user/notification/add/${id2}`,{value :  `new friend added` },config);
       setLoad(0);
       error("removed from friend requests");
       setTimeout(() => {

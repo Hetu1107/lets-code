@@ -45,7 +45,7 @@ function AddFriend(props) {
     };
     try {
       await axios
-        .put(`/api/v1/rooms/addpeople/${id}`, { id1, id2 }, config)
+        .put(`https://lets-code-backend-f27r.onrender.com/api/v1/rooms/addpeople/${id}`, { id1, id2 }, config)
         .then(() => {
           props.setPeople([...props.people, friends[index]]);
           let a = friends;
@@ -63,7 +63,7 @@ function AddFriend(props) {
             error("");
           }, 5000);
         });
-        await axios.put(`/api/v1/user/notification/add/${id1}`,{value :  `you are added to the new room` },config);
+        await axios.put(`https://lets-code-backend-f27r.onrender.com/api/v1/user/notification/add/${id1}`,{value :  `you are added to the new room` },config);
     } catch (e) {
       setLoad(0);
       error(e.response.data.error);

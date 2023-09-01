@@ -18,7 +18,7 @@ function Run(props) {
         const code = props.selectedFile.text;
         await axios
           .post(
-            `/api/v1/rooms/room/${props.selectedFile._id}`,
+            `https://lets-code-backend-f27r.onrender.com/api/v1/rooms/room/${props.selectedFile._id}`,
             { input, code },
             config
           )

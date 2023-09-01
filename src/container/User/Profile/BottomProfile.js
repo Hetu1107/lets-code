@@ -20,7 +20,7 @@ function BottomProfile() {
   useEffect(async()=>{
     setLoad(1);
     try{
-      await axios.get(`/api/v1/friends/recieved/${localStorage.getItem("id")}`).then((res)=>{
+      await axios.get(`https://lets-code-backend-f27r.onrender.com/api/v1/friends/recieved/${localStorage.getItem("id")}`).then((res)=>{
         return res.data
       }).then((data)=>{
         setNotifications(data.notifications);

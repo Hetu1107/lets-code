@@ -39,7 +39,7 @@ function Modal() {
       };
       try {
         await axios
-          .post(`/api/v1/rooms/create/${user_Id}`, { roomname }, config)
+          .post(`https://lets-code-backend-f27r.onrender.com/api/v1/rooms/create/${user_Id}`, { roomname }, config)
           .then((data) => {
             setLoad(0);
             set_User_Rooms([...user_Rooms, data.data.detail]);

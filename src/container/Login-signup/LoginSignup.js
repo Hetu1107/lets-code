@@ -39,7 +39,7 @@ function LoginSignup() {
       let email = registerEmail;
       let password = registerPassword;
       await axios
-        .post("/api/v1/user/register", { username, email, password }, config)
+        .post("https://lets-code-backend-f27r.onrender.com/api/v1/user/register", { username, email, password }, config)
         .then((d) => {
           return localStorage.setItem("authToken-VNote", d.data.token);
         })
@@ -77,7 +77,7 @@ function LoginSignup() {
       let email = loginEmail;
       let password = loginPassword;
       await axios
-        .post("/api/v1/user/login", { email, password }, config)
+        .post("https://lets-code-backend-f27r.onrender.com/api/v1/user/login", { email, password }, config)
         .then((d) => {
           return localStorage.setItem("authToken-VNote", d.data.token);
         })

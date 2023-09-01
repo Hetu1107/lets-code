@@ -69,7 +69,7 @@ function Home() {
       if (id) {
         try {
           await axios
-            .get(`/api/v1/user/${id}`)
+            .get(`https://lets-code-backend-f27r.onrender.com/api/v1/user/${id}`)
             .then((res) => {
               return res.data;
             })

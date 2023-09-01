@@ -45,7 +45,7 @@ function TopProfile(props) {
       let email = changeEmail;
       let profileIMG = changeImgIndex;
       await axios.put(
-        `/api/v1/user/update/${localStorage.getItem("id")}`,
+        `https://lets-code-backend-f27r.onrender.com/api/v1/user/update/${localStorage.getItem("id")}`,
         { username, email, profileIMG },
         config
       );

@@ -34,8 +34,8 @@ function Invite(props) {
     try{
       let id1 = id;
       let id2 = localStorage.getItem("id");
-      await axios.put("/api/v1/friends/send",{id1,id2},config);
-      await axios.put(`/api/v1/user/notification/add/${id1}`,{value :  `new friend request recieved` },config);
+      await axios.put("https://lets-code-backend-f27r.onrender.com/api/v1/friends/send",{id1,id2},config);
+      await axios.put(`https://lets-code-backend-f27r.onrender.com/api/v1/user/notification/add/${id1}`,{value :  `new friend request recieved` },config);
       setLoad(0);
       error("request successfully sended");
       setTimeout(()=>{
