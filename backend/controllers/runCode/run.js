@@ -1,6 +1,5 @@
 exports.runcode = async (req, res, next) => {
   const { input, code } = req.body;
-  console.log(code);
   try {
     // fetch the response from the api
     const response = await fetch(
@@ -39,8 +38,6 @@ exports.runcode = async (req, res, next) => {
       }
       // get output from the api
       const jsonGetSolution = await getSolution(url);
-      console.log(jsonRes);
-      console.log(jsonGetSolution);
       let re = "server error";
       if (jsonGetSolution.stdout) {
         re = jsonGetSolution.stdout;
