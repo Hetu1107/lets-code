@@ -25,6 +25,36 @@
     background-position: center;
     opacity: 0.4;
 }
+.box-ani{
+    width: 200px;
+    height: 130px;
+    border-radius: 10px;
+    background-color: $cardlow;
+    position: absolute;
+    // animation-direction: alternate;
+    z-index: 0;
+}
+.box-ani.lr{
+    left: 0;
+    top: 150px;
+    animation: lr 10s infinite;
+}
+@keyframes lr {
+    0%   {left: 0px;}
+    50%  {left: 100%;}
+    100% {left: 0px;}
+}
+.box-ani.rl{
+    right: 0;
+    bottom: 50px;
+    animation: rl 10s infinite;
+    // animation-direction: alternate;
+}
+@keyframes rl {
+    0%   {right: 0px;}
+    50%  {right: 100%;}
+    100% {right: 0px;}
+}
 .main-front-page{
     width: 50%;
     position: relative;
@@ -37,8 +67,9 @@
     text-overflow:clip;
     background-color: $cardlow;
     border-radius: 5px;
-    padding: 10px 5px;
+    padding: 20px;
     border: $border-box;
+    z-index: 10;
 }
 .main-img{
     width: 100%;
@@ -54,17 +85,45 @@
     width: 100%;
     height: fit-content;
     display: flex;
+    flex-direction: column;
+    text-align: center;
     justify-content: center;
     align-items: center;
     text-overflow: clip;
     text-align: center;
     margin: 10px 0;
+    position: relative;
     h1{
-        font-size: 3rem;
+        font-size: 7rem;
         color: $color;
-        font-family: $roboto;
+        font-family: $poppins;
         margin: 0;
         padding: 0;
+        font-weight: 700;
+        line-height: 7rem;
+        &.one{
+            color: $one;
+        }
+        &.two{
+            color: $two;
+        }
+        &.three{
+            color: $three;
+        }
+    }
+    p{
+        font-family: $poppins;
+        color: $text;
+        font-weight: 100;
+        font-size: 14px;
+        margin-top: 30px;
+        span{
+            font-weight: 400;
+            color: $color;
+            &.blue{
+                color: $one;
+            }
+        }
     }
 }
 .main-button{
@@ -92,8 +151,37 @@
     }
 }
 }
+
+@media only screen and (max-width: 1400px){
+    .main-front-page{
+        width: 70%;
+    }
+    .main-head{
+        h1{
+            font-size: 5rem;
+            line-height: 5rem;
+        }
+    }
+}
 @media only screen and (max-width: 800px){
     .main-front-page{
-        width: 90%;
+        width: 80%;
+    }
+    .main-head{
+        h1{
+            font-size: 4rem;
+            line-height: 4rem;
+        }
+    }
+}
+@media only screen and (max-width: 500px){
+    .main-front-page{
+        width: 80%;
+    }
+    .main-head{
+        h1{
+            font-size: 3rem;
+            line-height: 3rem;
+        }
     }
 }

@@ -17,7 +17,8 @@ function Nav(props) {
   let profile =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
   const [width, setwidth] = useState(window.screen.width);
-  const { user_Name, user_Index } = useContext(UserContext);
+  const { user_Name, user_Index, set_User_Index, set_User_Name } =
+    useContext(UserContext);
   window.addEventListener("resize", () => {
     setwidth(window.screen.width);
   });
@@ -31,6 +32,8 @@ function Nav(props) {
     localStorage.clear();
     navigate("/");
     document.getElementById("nav-profile-drop").style.top = "-150px";
+    set_User_Index(null);
+    set_User_Name("Login");
     drop = 0;
   };
   return (
@@ -115,7 +118,7 @@ function Nav(props) {
                 style={{ borderRadius: "50%" }}
               />
               <h4>{user_Name}</h4>
-              <AiFillCaretDown/>
+              <AiFillCaretDown />
               {/* <i class="fas fa-sort-down"></i> */}
             </div>
             <div className="nav-profile-drop" id="nav-profile-drop">
@@ -123,9 +126,17 @@ function Nav(props) {
                 <BiUser />
                 <h4>Profile</h4>
               </div>
-              <div onClick={logOut}>
+              <div
+                onClick={
+                  user_Index != null
+                    ? logOut
+                    : () => {
+                        navigate("/register");
+                      }
+                }
+              >
                 <IoLogOutOutline />
-                <h4>Log-Out</h4>
+                <h4>{user_Index != null ? "Log-Out" : "Log-In"}</h4>
               </div>
             </div>
           </div>

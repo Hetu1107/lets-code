@@ -1,8 +1,8 @@
 exports.runcode = async (req, res, next) => {
   const { input, code } = req.body;
+  console.log(code);
   try {
-
-    // fetch the response from the api 
+    // fetch the response from the api
     const response = await fetch(
       "https://judge0-ce.p.rapidapi.com/submissions",
       {
@@ -20,31 +20,37 @@ exports.runcode = async (req, res, next) => {
         }),
       }
     );
-    // getting token from the res 
+    // getting token from the res
     const jsonRes = await response.json();
     if (jsonRes.token) {
-      let url = `https://judge0-ce.p.rapidapi.com/submissions/${jsonRes.token}?base64_encoded=true`;
-      const getSolution = await fetch(url, {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-          "x-rapidapi-key": process.env.RUN_KEY,
-          "content-type": "application/json",
-        },
-      })
-      // get output from the api 
-      const jsonGetSolution = await getSolution.json();
+      let url = `https://judge0-ce.p.rapidapi.com/submissions/${jsonRes.token}`;
+      async function getSolution(url) {
+        const data = await fetch(url, {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
+            "x-rapidapi-key":
+              "72f80e20ffmsh4820442646bdd04p1ba528jsndafafe9793f2",
+            "content-type": "application/json",
+            Accept: "*/*",
+          },
+        });
+        return data.json();
+      }
+      // get output from the api
+      const jsonGetSolution = await getSolution(url);
+      console.log(jsonRes);
+      console.log(jsonGetSolution);
       let re = "server error";
       if (jsonGetSolution.stdout) {
-        re = atob(jsonGetSolution.stdout);
+        re = jsonGetSolution.stdout;
       } else if (jsonGetSolution.stderr) {
-        re = atob(jsonGetSolution.stderr);
+        re = jsonGetSolution.stderr;
       } else {
-        re = atob(jsonGetSolution.compile_output);
+        re = jsonGetSolution.compile_output;
       }
       res.status(200).json({ re });
-    }
-    else{
+    } else {
       next(jsonRes.error);
     }
   } catch (e) {
