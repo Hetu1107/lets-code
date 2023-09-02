@@ -28,8 +28,7 @@ exports.runcode = async (req, res, next) => {
           method: "GET",
           headers: {
             "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-            "x-rapidapi-key":
-              "72f80e20ffmsh4820442646bdd04p1ba528jsndafafe9793f2",
+            "x-rapidapi-key": process.env.RUN_KEY,
             "content-type": "application/json",
             Accept: "*/*",
           },
