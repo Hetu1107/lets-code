@@ -6,7 +6,7 @@ import { LoaderContext } from "../../context/LoaderContext";
 const Avtar = ReturnAvtars();
 function AddFriend(props) {
   // gettting contexts
-  const setLoad = useContext(LoaderContext);
+  const {setLoad} = useContext(LoaderContext);
   const error = useContext(ErrorContext);
 
   // friends state

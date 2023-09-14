@@ -7,7 +7,7 @@ import { ErrorContext } from "../context/ErrorContext";
 const Private = ({ component }) => {
   const error = useContext(ErrorContext);
   const navigate = useNavigate();
-  const setLoad = useContext(LoaderContext);
+  const {setLoad} = useContext(LoaderContext);
   const token = localStorage.getItem("authToken-VNote");
   let {
     set_User_Index,

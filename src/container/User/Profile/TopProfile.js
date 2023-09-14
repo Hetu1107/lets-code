@@ -8,7 +8,7 @@ const Avtars = ReturnAvtars();
 function TopProfile(props) {
 
   // loader 
-  const setLoad = useContext(LoaderContext);
+  const {Load,setLoad} = useContext(LoaderContext);
 
   let {set_User_Index,set_User_Name,set_User_Email,user_Index,user_Name,user_Email} = useContext(UserContext);
   const [editMode, setMode] = useState(false);
@@ -51,7 +51,6 @@ function TopProfile(props) {
       );
       setLoad(0);
     } catch (e) {
-      console.log(e);
     }
     setLoad(0);
   };
@@ -61,11 +60,10 @@ function TopProfile(props) {
     <div className="main-profile-top">
       <div className="main-profile-avtar">
         <div className="main-profile-avtar-frame">
-          <img src={cahngeIMG} />
+          <img className="skeleton" src={Load ? "" : cahngeIMG} />
           <div className="dot"></div>
           <div className="left-arrow" id="left-arrow">
             <i class="fas fa-chevron-left" onClick={()=>{
-              console.log(changeImgIndex);
               if (changeImgIndex == 0) {
                 setChangeImgIndex(Avtars.length - 1);
                 setChangeIMG(Avtars[Avtars.length - 1].src);
@@ -91,9 +89,10 @@ function TopProfile(props) {
         </div>
       </div>
       <div className="main-profile-detail">
-        <div className="details">
+        <div className="details" >
           <h3>Name</h3>
           <input
+            className={Load ? "skeleton-text" : ""}
             value={changeUserName}
             onChange={(e) => {
               setChangeUserName(e.target.value);
@@ -110,6 +109,7 @@ function TopProfile(props) {
         <div className="details">
           <h3>Email</h3>
           <input
+            className={Load ? "skeleton-text" : ""}
             value={changeEmail}
             onChange={(e) => {
               setChangeEmail(e.target.value);

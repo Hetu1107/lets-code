@@ -11,14 +11,16 @@ function Friends(props) {
   const [sended, set_Sended] = useState(null);
   const [friends, set_Friends] = useState(null);
   const [user_Rooms, set_User_Rooms] = useState(null);
-  const setLoad = useContext(LoaderContext);
+  const { setLoad } = useContext(LoaderContext);
   useEffect(async () => {
     setLoad(1);
     const getUsers = async () => {
       const id = localStorage.getItem("id");
       try {
         await axios
-          .get(`https://lets-code-backend-f27r.onrender.com/api/v1/user/getall/${id}`)
+          .get(
+            `https://lets-code-backend-f27r.onrender.com/api/v1/user/getall/${id}`
+          )
           .then((res) => {
             return res.data;
           })
@@ -37,7 +39,9 @@ function Friends(props) {
       const id = localStorage.getItem("id");
       try {
         await axios
-          .get(`https://lets-code-backend-f27r.onrender.com/api/v1/friends/getfriends/${id}`)
+          .get(
+            `https://lets-code-backend-f27r.onrender.com/api/v1/friends/getfriends/${id}`
+          )
           .then((res) => {
             return res.data;
           })
@@ -46,7 +50,8 @@ function Friends(props) {
             set_Sended(data.sended);
             set_Friends(data.friends);
             set_User_Rooms(data.rooms);
-          }).catch((e) => {
+          })
+          .catch((e) => {
             setLoad(0);
             error(e.response.data.error);
             setTimeout(() => {
@@ -54,7 +59,8 @@ function Friends(props) {
             }, 5000);
           });
       } catch (e) {
-        error(e.response.data.error);
+        // console.log(e);
+        // error(e.response.data.error);
         setTimeout(() => {
           error("");
         }, 5000);
@@ -66,16 +72,12 @@ function Friends(props) {
   }, []);
   return (
     <div className="main-friend-page">
-      {total_Users && friends && (
-        <Invite total_Users={total_Users} friends={friends} sended={sended} />
-      )}
-      {friends && (
-        <UserFriends
-          sended={sended}
-          friends={friends}
-          user_Rooms={user_Rooms}
-        />
-      )}
+      <Invite
+        total_Users_p={total_Users}
+        friends_p={friends}
+        sended_p={sended}
+      />
+      <UserFriends sended={sended} friends={friends} user_Rooms={user_Rooms} />
     </div>
   );
 }

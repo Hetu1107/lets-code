@@ -10,7 +10,7 @@ import Run from "./Run";
 
 function RightEditor(props) {
   // contexts
-  const setLoad = useContext(LoaderContext);
+  const {setLoad} = useContext(LoaderContext);
   const error = useContext(ErrorContext);
 
   // selected file

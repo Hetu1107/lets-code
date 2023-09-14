@@ -69,7 +69,9 @@ function Home() {
       if (id) {
         try {
           await axios
-            .get(`https://lets-code-backend-f27r.onrender.com/api/v1/user/${id}`)
+            .get(
+              `https://lets-code-backend-f27r.onrender.com/api/v1/user/${id}`
+            )
             .then((res) => {
               return res.data;
             })
@@ -115,7 +117,7 @@ function Home() {
   };
   return (
     <>
-      {returnLoader()}
+      {/* {returnLoader()} */}
       <UserContext.Provider
         value={{
           set_User_Index,
@@ -130,7 +132,7 @@ function Home() {
           user_Id,
         }}
       >
-        <LoaderContext.Provider value={setLoad}>
+        <LoaderContext.Provider value={{ Load, setLoad }}>
           <Modal />
           <Routes>
             <Route

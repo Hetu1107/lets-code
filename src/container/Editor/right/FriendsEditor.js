@@ -7,7 +7,7 @@ import { UserContext } from "../../context/UserContext";
 const Avtar = ReturnAvtars();
 function FriendsEditor(props) {
   //geting contexts
-  const setLoad = useContext(LoaderContext);
+  const {setLoad} = useContext(LoaderContext);
   const error = useContext(ErrorContext);
   const {user_Id} = useContext(UserContext);
 

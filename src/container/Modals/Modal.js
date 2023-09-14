@@ -10,16 +10,16 @@ function Modal() {
   const { set_User_Rooms, user_Name, user_Rooms, user_Id } =
     useContext(UserContext);
   const error = useContext(ErrorContext);
-  const setLoad = useContext(LoaderContext);
+  const { Load, setLoad } = useContext(LoaderContext);
   const navigate = useNavigate();
   const createRoom = () => {
     setLoad(1);
     const token = localStorage.getItem("authToken-VNote");
-    if(roomname.trim()==""){
+    if (roomname.trim() == "") {
       error("please provide valid name");
-      setTimeout(()=>{
+      setTimeout(() => {
         error("");
-      },5000);
+      }, 5000);
       setLoad(0);
       return;
     }
@@ -39,7 +39,11 @@ function Modal() {
       };
       try {
         await axios
-          .post(`https://lets-code-backend-f27r.onrender.com/api/v1/rooms/create/${user_Id}`, { roomname }, config)
+          .post(
+            `https://lets-code-backend-f27r.onrender.com/api/v1/rooms/create/${user_Id}`,
+            { roomname },
+            config
+          )
           .then((data) => {
             setLoad(0);
             set_User_Rooms([...user_Rooms, data.data.detail]);

@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 function Editor() {
   const { id } = useParams();
   // getting contexts
-  const setLoad = useContext(LoaderContext);
+  const {setLoad} = useContext(LoaderContext);
   const error = useContext(ErrorContext);
 
   const [files, setFiles] = useState([]);

@@ -9,10 +9,11 @@ import { ErrorContext } from "../context/ErrorContext";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsKey } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
+import Loading from "../Load/Loading";
 
 function LoginSignup() {
   const error = useContext(ErrorContext);
-  const setLoad = useContext(LoaderContext);
+  const {Load,setLoad} = useContext(LoaderContext);
   const navigate = useNavigate();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -101,6 +102,8 @@ function LoginSignup() {
     setLoad(0);
   };
   return (
+    <>
+    {Load ? <Loading /> : ""}
     <div className="form-main">
       <div className="side-box-form form-left">
         <div className="fixed-main"></div>
@@ -350,7 +353,8 @@ function LoginSignup() {
           </div>
         </form>
       </div> */}
-    </div>
+    </div>    
+    </>
   );
 }
 

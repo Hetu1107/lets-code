@@ -9,6 +9,7 @@ import ReturnAvtars from "../Avtars/Avtar";
 import { HiOutlineHome } from "react-icons/hi";
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import { BsDoorOpen } from "react-icons/bs";
+import { LoaderContext } from "../context/LoaderContext";
 
 const sidebarLi = [
   {
@@ -42,6 +43,7 @@ function Sidebar(props) {
   let profile =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png";
   const { user_Name, user_Index } = useContext(UserContext);
+  const {load , setLoad} = useContext(LoaderContext);
   let [active, setActive] = useState("Home");
   useEffect(() => {
     document.getElementById(active).classList.add("active");
@@ -51,7 +53,7 @@ function Sidebar(props) {
       <Link to="/register">
         <div className="side-profile">
           <div className="profile-round">
-            <img src={user_Index ? Avtars[user_Index].src : profile} />
+            <img className={`${load ? "skeleton" : ""}`} src={load ? "" : (user_Index ? Avtars[user_Index].src : profile)} placeholder=""/>
             {/* <div className="prof-round-bottom"></div> */}
           </div>
           {/* <div className="side-prof-name">

@@ -1,5 +1,12 @@
 @import "variable";
+@import "./assets/laoder.scss";
+@import "./assets/skeletonLoad.scss";
 
+
+img{
+    flex-shrink: 0;
+    object-fit: cover;
+}
 .main-home{
     width: 100%;
     position: relative;

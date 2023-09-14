@@ -9,7 +9,7 @@ import RoomCard from "./Room/RoomCard";
 import { AiOutlineFolderAdd } from "react-icons/ai";
 
 function Room() {
-  const setLoad = useContext(LoaderContext);
+  const {setLoad} = useContext(LoaderContext);
   const { set_User_Rooms, user_Rooms, user_Id } = useContext(UserContext);
   const [Rooms, setRooms] = useState(null);
   const [userId, setUserId] = useState(null);
